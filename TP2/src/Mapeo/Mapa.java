@@ -3,6 +3,8 @@ package Mapeo;
 import java.util.ArrayList;
 import java.util.HashSet;
 
+import GrafoP3.GrafoPesado;
+
 
 public class Mapa {
 	
@@ -74,6 +76,46 @@ public class Mapa {
 		return _ciudades.get(i).existeRuta(_ciudades.get(j));
 	}
 	
+	public GrafoPesado Graficador(int maxPeajes){
+		
+		chequearPeajes(maxPeajes);
+		
+		int l = getCantCiudades();
+		int lim = l + (l*maxPeajes);
+		
+		GrafoPesado ret = new GrafoPesado(lim);
+		
+		for(int i=0;i<lim;i++){
+			
+			int h = i;
+			
+			int cont = 0;
+			while(h>=l){ h-=l; cont++;}
+			
+			for (int j : getVecinos(h)){
+				
+				for(Ruta r : _ciudades.get(h)._rutas.get(_ciudades.get(j))){
+					
+					if(i>=l)		j+=(l*cont);
+					
+					if(r._peaje){	
+						
+						if(j+l<lim){
+							
+							j+=l;
+							ret.agregarArista(i, j, r._distancia);
+						}
+					}
+					
+					else ret.agregarArista(i, j, r._distancia);
+				}
+			}
+		}
+		
+		return ret;
+	}
+	
+	
 	private void chequearRuta(int i,int j,String accion){
 		
 		if( i < 0 || i >= getCantCiudades() )
@@ -91,6 +133,13 @@ public class Mapa {
 		if( c < 0 || c >= getCantCiudades())
 			throw new IllegalArgumentException("Se intentó consultar " + accion + " de un vértice inexistente! i = " + c);
 		
+	}
+	
+	private void chequearPeajes(int p){
+		
+		if(p<0){
+			throw new IllegalArgumentException("No se puede crear un Grafo con una cantidad de peajes negativa "+p);
+		}
 	}
 }
 

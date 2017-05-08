@@ -5,7 +5,7 @@ import java.util.Set;
 
 import org.junit.Test;
 
-public class GrafoGeneralTest
+public class GrafoMapaTest
 {
 	@Test
 	public void agregarRutaTest()
