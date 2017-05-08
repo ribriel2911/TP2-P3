@@ -1,8 +1,8 @@
 package Mapeo;
 
 import GrafoP3.*;
-
 import static org.junit.Assert.*;
+
 import org.junit.Test;
 
 public class GraficadorTest {
