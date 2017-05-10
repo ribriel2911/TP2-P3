@@ -19,13 +19,13 @@ public class Ciudad {
 		_rutas = new HashMap<Ciudad,HashSet<Ruta>>();
 	}
 	
-	public Ruta encontrarRuta(Ciudad c,int dist,boolean peaje){
+	public Ruta encontrarRuta(Ciudad c,int distancia,boolean peaje){
 		
 		if(existeRuta(c)){
 		
 			for(Ruta r : _rutas.get(c)){
 				
-				if(	r._distancia	==	dist
+				if(	r._distancia	==	distancia
 				&&	r._peaje		==	peaje)
 					
 					return r;
@@ -34,25 +34,31 @@ public class Ciudad {
 		return null;	
 	}
 	
-	public void construirRuta(Ciudad destino,int dist,boolean peaje){
+	public void construirRuta(Ciudad destino,int distancia,boolean peaje){
 		
 		if(!existeRuta(destino))	{_rutas.put(destino, new HashSet<Ruta>());}
 		
-		_rutas.get(destino).add(new Ruta(dist,peaje));
+		_rutas.get(destino).add(new Ruta(distancia,peaje));
 	}
 	
-	public boolean destruirRuta(Ciudad destino, int dist, boolean peaje)	{
+	public void destruirRuta(Ciudad destino, int distancia, boolean peaje)	{
 		
-		Ruta r = encontrarRuta(destino,dist,peaje);
+		Ruta r = encontrarRuta(destino,distancia,peaje);
 		
 		if(r!=null && _rutas.get(destino).remove(r)){
 		
 			if(_rutas.get(destino).size()==0){
 				_rutas.remove(destino);
 			}
-			return true;
 		}
-		return false;
+		
+		else{
+		throw new IllegalArgumentException("No se pudo eliminar la ruta con los parametros\n"
+				+ "Origen: Ciudad "+_id+"\n"
+				+ "Destino: Ciudad "+destino._id+"\n"
+				+ "Distancia: "+distancia+"\n"
+				+ "Peaje:" + peaje);
+		}
 	}
 	
 	public boolean existeRuta(Ciudad destino)	{return _rutas.containsKey(destino);}
