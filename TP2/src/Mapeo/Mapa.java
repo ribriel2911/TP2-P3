@@ -2,9 +2,7 @@ package Mapeo;
 
 import java.util.ArrayList;
 import java.util.HashSet;
-
-import GrafoP3.GrafoPesado;
-
+import CaminoMinimo.*;
 
 public class Mapa {
 	
@@ -76,14 +74,23 @@ public class Mapa {
 		return _ciudades.get(i).existeRuta(_ciudades.get(j));
 	}
 	
-	public GrafoPesado Graficador(int maxPeajes){
+	public Grafo Graficador(int maxPeajes){
 		
 		chequearPeajes(maxPeajes);
 		
 		int l = getCantCiudades();
 		int lim = l + (l*maxPeajes);
 		
-		GrafoPesado ret = new GrafoPesado(lim);
+		Grafo ret = new Grafo();
+		
+		ArrayList<Nodo> nodos = new ArrayList<>();
+		
+		for(int i=0;i<lim;i++){
+			
+			Nodo n = new Nodo(""+i);
+			
+			nodos.add(n);
+		}
 		
 		for(int i=0;i<lim;i++){
 			
@@ -103,14 +110,16 @@ public class Mapa {
 						if(j+l<lim){
 							
 							j+=l;
-							ret.agregarArista(i, j, r._distancia);
+							nodos.get(i).agregarArista(nodos.get(j), r._distancia);
 						}
 					}
 					
-					else ret.agregarArista(i, j, r._distancia);
+					else nodos.get(i).agregarArista(nodos.get(j), r._distancia);
 				}
 			}
 		}
+		
+		ret.setNodos(nodos);
 		
 		return ret;
 	}

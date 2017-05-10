@@ -1,6 +1,6 @@
 package Mapeo;
 
-import GrafoP3.*;
+import CaminoMinimo.*;
 import static org.junit.Assert.*;
 
 import org.junit.Test;
@@ -13,7 +13,7 @@ public class GraficadorTest {
 		
 		Mapa map = new Mapa();
 		
-		GrafoPesado test = map.Graficador(2);
+		Grafo test = map.Graficador(2);
 		
 		assertTrue( test.getVertices()==0);
 	}
@@ -23,9 +23,9 @@ public class GraficadorTest {
 	{
 		Mapa map = MapaFeliz();
 		
-		GrafoPesado ret = map.Graficador(2);
+		Grafo ret = map.Graficador(1);
 	
-		assertTrue( ret.getVertices() == (map.getCantCiudades()*3) );
+		assertTrue( ret.getVertices() == (map.getCantCiudades()*2) );
 	}
 	
 
@@ -34,7 +34,7 @@ public class GraficadorTest {
 	{
 		Mapa map = MapaFeliz();
 		
-		GrafoPesado ret = map.Graficador(0);
+		Grafo ret = map.Graficador(0);
 	
 		assertTrue	( ret.getVertices() == map.getCantCiudades());
 	}
@@ -51,7 +51,7 @@ public class GraficadorTest {
 	{
 		Mapa map = MapaFeliz();
 		
-		GrafoPesado ret = map.Graficador(2);
+		Grafo ret = map.Graficador(1);
 	
 		assertTrue( ret.existeArista(0,1) );
 		assertTrue( ret.existeArista(1,0) );
@@ -63,10 +63,10 @@ public class GraficadorTest {
 	{
 		Mapa map = MapaFeliz();
 		
-		GrafoPesado ret = map.Graficador(2);
+		Grafo ret = map.Graficador(1);
 	
-		assertFalse	( ret.existeArista(6, 7) );
-		assertFalse	( ret.existeArista(7, 6) );
+		assertFalse	( ret.existeArista(2, 3) );
+		assertFalse	( ret.existeArista(2, 3) );
 	}
 	
 	
@@ -75,10 +75,10 @@ public class GraficadorTest {
 	{
 		Mapa map = MapaFeliz();
 		
-		GrafoPesado ret = map.Graficador(2);
+		Grafo ret = map.Graficador(1);
 	
-		assertTrue	( ret.existeArista(4, 11) );
-		assertFalse	( ret.existeArista(11, 4) );
+		assertTrue	( ret.existeArista(0, 7) );
+		assertFalse	( ret.existeArista(7, 0) );
 	}
 	
 	

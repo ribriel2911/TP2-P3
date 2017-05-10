@@ -1,22 +1,38 @@
 package CaminoMinimo;
 
+import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.Set;
 
 public class Grafo {
 	
-	private Set<Nodo> _nodos = new HashSet<>();
+	private ArrayList<Nodo> _nodos = new ArrayList<>();
     
     public void agregarNodo(Nodo nodo) {
         _nodos.add(nodo);
     }
 
 	public Set<Nodo> getNodos() {
-		return _nodos;
+		
+		HashSet<Nodo> ret = new HashSet<>();
+		
+		ret.addAll(_nodos);
+		
+		return ret;
 	}
 
-	public void setNodos(Set<Nodo> nodos) {
+	public void setNodos(ArrayList<Nodo> nodos) {
 		_nodos = nodos;
+	}
+
+	public int getVertices() {
+		
+		return _nodos.size();
+	}
+
+	public boolean existeArista(int i, int j) {
+		
+		return _nodos.get(i)._nodosVecinos.containsKey(_nodos.get(j));
 	}
  
     // getters and setters
