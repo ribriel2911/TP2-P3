@@ -13,7 +13,7 @@ public class GraficadorTest {
 		
 		Mapa map = new Mapa();
 		
-		Grafo test = map.Graficador(2);
+		Grafo test = map.graficador(2);
 		
 		assertTrue( test.getVertices()==0);
 	}
@@ -23,7 +23,7 @@ public class GraficadorTest {
 	{
 		Mapa map = MapaFeliz();
 		
-		Grafo ret = map.Graficador(1);
+		Grafo ret = map.graficador(1);
 	
 		assertTrue( ret.getVertices() == (map.totalCiudades()*2) );
 	}
@@ -34,7 +34,7 @@ public class GraficadorTest {
 	{
 		Mapa map = MapaFeliz();
 		
-		Grafo ret = map.Graficador(0);
+		Grafo ret = map.graficador(0);
 	
 		assertTrue	( ret.getVertices() == map.totalCiudades());
 	}
@@ -43,7 +43,7 @@ public class GraficadorTest {
 	public void tamañoNegativoTest()
 	{
 		Mapa map = MapaFeliz();
-		map.Graficador(-1);
+		map.graficador(-1);
 	}
 	
 	@Test
@@ -51,7 +51,7 @@ public class GraficadorTest {
 	{
 		Mapa map = MapaFeliz();
 		
-		Grafo ret = map.Graficador(1);
+		Grafo ret = map.graficador(1);
 	
 		assertTrue( ret.existeArista(0,1) );
 		assertTrue( ret.existeArista(1,0) );
@@ -63,7 +63,7 @@ public class GraficadorTest {
 	{
 		Mapa map = MapaFeliz();
 		
-		Grafo ret = map.Graficador(1);
+		Grafo ret = map.graficador(1);
 	
 		assertFalse	( ret.existeArista(2, 3) );
 		assertFalse	( ret.existeArista(2, 3) );
@@ -75,7 +75,7 @@ public class GraficadorTest {
 	{
 		Mapa map = MapaFeliz();
 		
-		Grafo ret = map.Graficador(1);
+		Grafo ret = map.graficador(1);
 	
 		assertTrue	( ret.existeArista(0, 7) );
 		assertFalse	( ret.existeArista(7, 0) );

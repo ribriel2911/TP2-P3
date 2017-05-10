@@ -74,7 +74,7 @@ public class Mapa {
 		return _ciudades.get(i).existeRuta(_ciudades.get(j));
 	}
 	
-	public Grafo Graficador(int maxPeajes){
+	public Grafo graficador(int maxPeajes){
 		
 		chequearPeajes(maxPeajes);
 		
