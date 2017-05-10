@@ -25,7 +25,7 @@ public class GraficadorTest {
 		
 		Grafo ret = map.Graficador(1);
 	
-		assertTrue( ret.getVertices() == (map.getCantCiudades()*2) );
+		assertTrue( ret.getVertices() == (map.totalCiudades()*2) );
 	}
 	
 
@@ -36,7 +36,7 @@ public class GraficadorTest {
 		
 		Grafo ret = map.Graficador(0);
 	
-		assertTrue	( ret.getVertices() == map.getCantCiudades());
+		assertTrue	( ret.getVertices() == map.totalCiudades());
 	}
 	
 	@Test(expected = IllegalArgumentException.class)

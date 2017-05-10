@@ -41,7 +41,7 @@ public class Mapa {
 		_ciudades.add(new Ciudad(id,nombre));
 	}
 	
-	public int getCantCiudades(){
+	public int totalCiudades(){
 		
 		return _ciudades.size();
 	}
@@ -78,7 +78,7 @@ public class Mapa {
 		
 		chequearPeajes(maxPeajes);
 		
-		int l = getCantCiudades();
+		int l = totalCiudades();
 		int lim = l + (l*maxPeajes);
 		
 		Grafo ret = new Grafo();
@@ -127,10 +127,10 @@ public class Mapa {
 	
 	private void chequearRuta(int i,int j,String accion){
 		
-		if( i < 0 || i >= getCantCiudades() )
+		if( i < 0 || i >= totalCiudades() )
 			throw new IllegalArgumentException("Se intentó " + accion + " una ruta con una ciudad inexistente! i = " + i);
 			
-		if( j < 0 || j >= getCantCiudades() )
+		if( j < 0 || j >= totalCiudades() )
 			throw new IllegalArgumentException("Se intentó " + accion + " una ruta con una ciudad inexistente! j = " + j);
 			
 		if( i == j )
@@ -139,7 +139,7 @@ public class Mapa {
 	
 	private void chequearCiudad(int c, String accion){
 		
-		if( c < 0 || c >= getCantCiudades())
+		if( c < 0 || c >= totalCiudades())
 			throw new IllegalArgumentException("Se intentó consultar " + accion + " de un vértice inexistente! i = " + c);
 		
 	}
