@@ -60,7 +60,7 @@ public class Mapa {
 		return ret;
 	}
 	
-	public int getGrado(int ciudad){
+	public int totalVecinos(int ciudad){
 		
 		chequearCiudad(ciudad,"grado");
 		

@@ -73,20 +73,20 @@ public class GrafoMapaTest{
 	public void gradoTest(){
 		Mapa rueda = construirRueda();
 		
-		assertEquals(5, rueda.getGrado(5));
-		assertEquals(3, rueda.getGrado(0));
+		assertEquals(5, rueda.totalVecinos(5));
+		assertEquals(3, rueda.totalVecinos(0));
 	}
 
 	@Test(expected = IllegalArgumentException.class)
 	public void gradoInvalidoTest(){
 		Mapa rueda = construirRueda();
-		rueda.getGrado(-1);	
+		rueda.totalVecinos(-1);	
 	}
 
 	@Test(expected = IllegalArgumentException.class)
 	public void gradoExcedidoTest(){
 		Mapa rueda = construirRueda();
-		rueda.getGrado(6);		
+		rueda.totalVecinos(6);		
 	}
 	
 	@Test
