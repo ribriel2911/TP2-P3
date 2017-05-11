@@ -19,7 +19,7 @@ public class GraficadorTest {
 	}
 	
 	@Test
-	public void tamañoTest()
+	public void tamaÃ±oTest()
 	{
 		Mapa map = MapaFeliz();
 		
@@ -30,7 +30,7 @@ public class GraficadorTest {
 	
 
 	@Test
-	public void tamañoSinPeajes()
+	public void tamaÃ±oSinPeajes()
 	{
 		Mapa map = MapaFeliz();
 		
@@ -40,7 +40,7 @@ public class GraficadorTest {
 	}
 	
 	@Test(expected = IllegalArgumentException.class)
-	public void tamañoNegativoTest()
+	public void tamaÃ±oNegativoTest()
 	{
 		Mapa map = MapaFeliz();
 		map.graficador(-1);

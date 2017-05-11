@@ -29,6 +29,11 @@ public class Grafo {
 		
 		return _nodos.size();
 	}
+	
+	public Nodo getNodo(int i)
+	{
+		return _nodos.get(i); 
+	}
 
 	public boolean existeArista(int i, int j) {
 		
