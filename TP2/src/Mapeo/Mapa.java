@@ -125,6 +125,9 @@ public class Mapa {
 	
 	public Grafo caminoCorto(int desde, int peajes){
 		
+		chequearCiudad(desde, "los caminos origen");
+		chequearPeajes(peajes);
+		
 		Grafo ret = new Grafo();
 		
 		Grafo mapa = graficador(peajes);
@@ -142,6 +145,10 @@ public class Mapa {
 	}
 	
 	protected Nodo caminoA(int i, Grafo g){
+		
+		chequearCiudad(i,"el camino");
+		
+		chequearGrafo(g);
 		
 		Nodo ret = new Nodo(i);
 		
@@ -184,6 +191,12 @@ public class Mapa {
 		return ret;
 	}
 	
+	private void chequearGrafo(Grafo g) {
+		if(g.getVertices()%totalCiudades()!=0){
+			throw new IllegalArgumentException("El grafo ingresado no corresponde a este mapa");
+		}
+	}
+
 	private void chequearRuta(int i,int j,String accion){
 		
 		if( i < 0 || i >= totalCiudades() )
@@ -196,10 +209,10 @@ public class Mapa {
 			throw new IllegalArgumentException("Se intentó " + accion + " una ruta con dos ciudades iguales! i, j = " + i);
 	}
 	
-	private void chequearCiudad(int c, String accion){
+	private void chequearCiudad(int c, String sujeto){
 		
 		if( c < 0 || c >= totalCiudades())
-			throw new IllegalArgumentException("Se intentó consultar " + accion + " de un vértice inexistente! i = " + c);
+			throw new IllegalArgumentException("Se intentó consultar " + sujeto + " de un vértice inexistente! i = " + c);
 	}
 	
 	private void chequearPeajes(int p){
