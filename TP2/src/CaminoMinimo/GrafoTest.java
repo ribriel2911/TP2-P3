@@ -9,8 +9,58 @@ import org.junit.Test;
 
 public class GrafoTest 
 {
+	
 	@Test
-	public void dijkstraTest()
+	public void caminoMasCortoB()
+	{
+		Grafo grafo = construirGrafo();
+		grafo = Dijkstra.calcularCaminoMinimo(grafo, grafo.getNodo(0));
+		List<Integer> caminoMasCortoParaB = Arrays.asList(grafo.getNodo(0).getId());
+		
+		assertTrue(grafo.getNodo(1).getCaminoMasCorto().equals(caminoMasCortoParaB));
+	}
+	
+	@Test
+	public void caminoMasCortoC()
+	{
+		Grafo grafo = construirGrafo();
+		grafo = Dijkstra.calcularCaminoMinimo(grafo, grafo.getNodo(0));
+		List<Integer> caminoMasCortoParaC = Arrays.asList(grafo.getNodo(0).getId());
+		
+		assertTrue(grafo.getNodo(2).getCaminoMasCorto().equals(caminoMasCortoParaC));
+	}
+	
+	@Test
+	public void caminoMasCortoD()
+	{
+		Grafo grafo = construirGrafo();
+		grafo = Dijkstra.calcularCaminoMinimo(grafo, grafo.getNodo(0));
+		List<Integer> caminoMasCortoParaD = Arrays.asList(grafo.getNodo(0).getId(), grafo.getNodo(1).getId());
+		
+		assertTrue(grafo.getNodo(3).getCaminoMasCorto().equals(caminoMasCortoParaD));
+	}
+	
+	@Test
+	public void caminoMasCortoE()
+	{
+		Grafo grafo = construirGrafo();
+		grafo = Dijkstra.calcularCaminoMinimo(grafo, grafo.getNodo(0));
+		List<Integer> caminoMasCortoParaE = Arrays.asList(grafo.getNodo(0).getId(), grafo.getNodo(1).getId(), grafo.getNodo(3).getId());
+		
+		assertTrue(grafo.getNodo(4).getCaminoMasCorto().equals(caminoMasCortoParaE));
+	}
+	
+	@Test
+	public void caminoMasCortoF()
+	{
+		Grafo grafo = construirGrafo();
+		grafo = Dijkstra.calcularCaminoMinimo(grafo, grafo.getNodo(0));
+		List<Integer> caminoMasCortoParaF = Arrays.asList(grafo.getNodo(0).getId(), grafo.getNodo(1).getId(), grafo.getNodo(3).getId());
+		
+		assertTrue(grafo.getNodo(5).getCaminoMasCorto().equals(caminoMasCortoParaF));
+	}
+	
+	public Grafo construirGrafo()
 	{
 		Nodo nodoA = new Nodo(0);
 		Nodo nodoB = new Nodo(1);
@@ -40,33 +90,7 @@ public class GrafoTest
 		grafo.agregarNodo(nodeD);
 		grafo.agregarNodo(nodoE);
 		grafo.agregarNodo(nodoF);
-		 
-		grafo = Dijkstra.calcularCaminoMinimo(grafo, nodoA);
 		
-		 	List<Integer> caminoMasCortoParaB = Arrays.asList(nodoA.getId());
-	        List<Integer> caminoMasCortoParaC = Arrays.asList(nodoA.getId());
-	        List<Integer> caminoMasCortoParaD = Arrays.asList(nodoA.getId(), nodoB.getId());
-	        List<Integer> caminoMasCortoParaE = Arrays.asList(nodoA.getId(), nodoB.getId(), nodeD.getId());
-	        List<Integer> caminoMasCortoParaF = Arrays.asList(nodoA.getId(), nodoB.getId(), nodeD.getId());
-	        
-	        for(Nodo nodo: grafo.getNodos())
-	        {
-	        	switch (nodo.getId())
-	        	{
-	        		case 1: assertTrue(nodo.getCaminoMasCorto().equals(caminoMasCortoParaB));
-	        		break;
-	        		
-	        		case 2: assertTrue(nodo.getCaminoMasCorto().equals(caminoMasCortoParaC));
-	        		break;
-	        		
-	        		case 3: assertTrue(nodo.getCaminoMasCorto().equals(caminoMasCortoParaD));
-	        		break;
-	        		
-	        		case 4: assertTrue(nodo.getCaminoMasCorto().equals(caminoMasCortoParaE));
-	        		break;
-	        		
-	        		case 5: assertTrue(nodo.getCaminoMasCorto().equals(caminoMasCortoParaF));
-	        	}
-	        }
+		return grafo;
 	}
 }
