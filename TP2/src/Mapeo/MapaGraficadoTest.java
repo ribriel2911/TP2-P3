@@ -1,13 +1,11 @@
 package Mapeo;
 
-import java.util.ArrayList;
-
 import CaminoMinimo.*;
 import static org.junit.Assert.*;
 
 import org.junit.Test;
 
-public class MapaGraficadorTest {
+public class MapaGraficadoTest {
 	
 	@Test
 	
@@ -105,9 +103,5 @@ public class MapaGraficadorTest {
 		map.agregarRuta(2, 3, 4, true);
 		
 		return map;
-		
 	}
-	
-	
-	
 }

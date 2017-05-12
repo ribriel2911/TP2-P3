@@ -5,7 +5,7 @@ import java.util.Set;
 
 import org.junit.Test;
 
-public class GrafoMapaTest{
+public class MapaTest{
 
 	//Tests propios de la clase Grafo trabajada en clase
 
