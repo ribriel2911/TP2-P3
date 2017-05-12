@@ -43,11 +43,11 @@ public class GrafoTest
 		 
 		grafo = Dijkstra.calcularCaminoMinimo(grafo, nodoA);
 		
-		 	List<Nodo> caminoMasCortoParaB = Arrays.asList(nodoA);
-	        List<Nodo> caminoMasCortoParaC = Arrays.asList(nodoA);
-	        List<Nodo> caminoMasCortoParaD = Arrays.asList(nodoA, nodoB);
-	        List<Nodo> caminoMasCortoParaE = Arrays.asList(nodoA, nodoB, nodeD);
-	        List<Nodo> caminoMasCortoParaF = Arrays.asList(nodoA, nodoB, nodeD);
+		 	List<Integer> caminoMasCortoParaB = Arrays.asList(nodoA.getId());
+	        List<Integer> caminoMasCortoParaC = Arrays.asList(nodoA.getId());
+	        List<Integer> caminoMasCortoParaD = Arrays.asList(nodoA.getId(), nodoB.getId());
+	        List<Integer> caminoMasCortoParaE = Arrays.asList(nodoA.getId(), nodoB.getId(), nodeD.getId());
+	        List<Integer> caminoMasCortoParaF = Arrays.asList(nodoA.getId(), nodoB.getId(), nodeD.getId());
 	        
 	        for(Nodo nodo: grafo.getNodos())
 	        {
