@@ -7,7 +7,7 @@ import static org.junit.Assert.*;
 
 import org.junit.Test;
 
-public class GraficadorTest {
+public class MapaGraficadorTest {
 	
 	@Test
 	
@@ -29,7 +29,6 @@ public class GraficadorTest {
 	
 		assertTrue( ret.getVertices() == (map.totalCiudades()*2) );
 	}
-	
 
 	@Test
 	public void tamanoSinPeajes()
@@ -58,7 +57,6 @@ public class GraficadorTest {
 		assertTrue( ret.existeArista(0,1) );
 		assertTrue( ret.existeArista(1,0) );
 	}
-	
 
 	@Test
 	public void aristaConPeajeTest()
@@ -71,7 +69,6 @@ public class GraficadorTest {
 		assertFalse	( ret.existeArista(2, 3) );
 	}
 	
-	
 	@Test
 	public void aristaEntreGrafosTest()
 	{
@@ -82,7 +79,6 @@ public class GraficadorTest {
 		assertTrue	( ret.existeArista(0, 7) );
 		assertFalse	( ret.existeArista(7, 0) );
 	}
-	
 	
 	@Test
 	public void sinPeajesA3(){
@@ -98,7 +94,6 @@ public class GraficadorTest {
 		assertTrue(tres.getCaminoMasCorto().get(2)==3);
 		assertTrue(tres.getDistancia()==12);
 	}
-	
 	
 	private Mapa MapaFeliz(){
 	
