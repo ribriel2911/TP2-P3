@@ -1,5 +1,7 @@
 package Mapeo;
 
+import java.util.ArrayList;
+
 import CaminoMinimo.*;
 import static org.junit.Assert.*;
 
@@ -7,10 +9,11 @@ import org.junit.Test;
 
 public class MapaGraficadoTest {
 	
-	@Test
 	
-	public void mapaVacio(){
-		
+	
+	@Test
+	public void mapaVacio()
+	{
 		Mapa map = new Mapa();
 		
 		Grafo test = map.graficador(2);

@@ -1,5 +1,6 @@
 package CaminoMinimo;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.LinkedList;
 import java.util.Map;
@@ -53,4 +54,20 @@ public class Nodo
 	public void setNodosVecinos(Map<Nodo, Integer> nodosVecinos) {
 		_nodosVecinos = nodosVecinos;
 	} 
+	
+	public static ArrayList<Nodo> crearNodos(int vertices) {
+		
+		if(vertices<0){
+			throw new IllegalArgumentException("Se crear una cantidad negativa de nodos: "+vertices);
+		}
+		
+		ArrayList<Nodo> nodos = new ArrayList<>();
+		
+		for(int i=0;i<vertices;i++){
+			
+			Nodo n = new Nodo(i);
+			nodos.add(n);
+		}
+		return nodos;
+	}
 }

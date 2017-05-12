@@ -86,7 +86,7 @@ public class Mapa {
 		
 		Grafo ret = new Grafo();
 		
-		ArrayList<Nodo> nodos = crearNodos(vertices);
+		ArrayList<Nodo> nodos = Nodo.crearNodos(vertices);
 		
 		for(int vertice=0;vertice<vertices;vertice++){
 			
@@ -141,7 +141,7 @@ public class Mapa {
 		return ret;
 	}
 	
-	private Nodo caminoA(int i, Grafo g){
+	protected Nodo caminoA(int i, Grafo g){
 		
 		Nodo ret = new Nodo(i);
 		
@@ -183,20 +183,6 @@ public class Mapa {
 		
 		return ret;
 	}
-
-	private ArrayList<Nodo> crearNodos(int vertices) {
-		ArrayList<Nodo> nodos = new ArrayList<>();
-		
-		for(int i=0;i<vertices;i++){
-			
-			Nodo n = new Nodo(i);
-			
-			nodos.add(n);
-		}
-		return nodos;
-	}
-	
-
 	
 	private void chequearRuta(int i,int j,String accion){
 		
@@ -214,7 +200,6 @@ public class Mapa {
 		
 		if( c < 0 || c >= totalCiudades())
 			throw new IllegalArgumentException("Se intentó consultar " + accion + " de un vértice inexistente! i = " + c);
-		
 	}
 	
 	private void chequearPeajes(int p){
