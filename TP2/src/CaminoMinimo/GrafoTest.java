@@ -12,12 +12,12 @@ public class GrafoTest
 	@Test
 	public void dijkstraTest()
 	{
-		Nodo nodoA = new Nodo("A");
-		Nodo nodoB = new Nodo("B");
-		Nodo nodoC = new Nodo("C");
-		Nodo nodeD = new Nodo("D"); 
-		Nodo nodoE = new Nodo("E");
-		Nodo nodoF = new Nodo("F");
+		Nodo nodoA = new Nodo(0);
+		Nodo nodoB = new Nodo(1);
+		Nodo nodoC = new Nodo(2);
+		Nodo nodeD = new Nodo(3); 
+		Nodo nodoE = new Nodo(4);
+		Nodo nodoF = new Nodo(5);
 		 
 		nodoA.agregarArista(nodoB, 10);
 		nodoA.agregarArista(nodoC, 15);
@@ -51,21 +51,21 @@ public class GrafoTest
 	        
 	        for(Nodo nodo: grafo.getNodos())
 	        {
-	        	switch (nodo.getNombre())
+	        	switch (nodo.getId())
 	        	{
-	        		case "B": assertTrue(nodo.getCaminoMasCorto().equals(caminoMasCortoParaB));
+	        		case 1: assertTrue(nodo.getCaminoMasCorto().equals(caminoMasCortoParaB));
 	        		break;
 	        		
-	        		case "C": assertTrue(nodo.getCaminoMasCorto().equals(caminoMasCortoParaC));
+	        		case 2: assertTrue(nodo.getCaminoMasCorto().equals(caminoMasCortoParaC));
 	        		break;
 	        		
-	        		case "D": assertTrue(nodo.getCaminoMasCorto().equals(caminoMasCortoParaD));
+	        		case 3: assertTrue(nodo.getCaminoMasCorto().equals(caminoMasCortoParaD));
 	        		break;
 	        		
-	        		case "E": assertTrue(nodo.getCaminoMasCorto().equals(caminoMasCortoParaE));
+	        		case 4: assertTrue(nodo.getCaminoMasCorto().equals(caminoMasCortoParaE));
 	        		break;
 	        		
-	        		case "F": assertTrue(nodo.getCaminoMasCorto().equals(caminoMasCortoParaF));
+	        		case 5: assertTrue(nodo.getCaminoMasCorto().equals(caminoMasCortoParaF));
 	        	}
 	        }
 	}

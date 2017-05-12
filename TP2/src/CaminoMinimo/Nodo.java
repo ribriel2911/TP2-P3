@@ -2,14 +2,13 @@ package CaminoMinimo;
 
 import java.util.HashMap;
 import java.util.LinkedList;
-import java.util.List;
 import java.util.Map;
 
 public class Nodo 
 {	
-	private String _nombre;
+	private int _id;
     
-    private List<Nodo> _caminoMasCorto = new LinkedList<>();
+    private LinkedList<Integer> _caminoMasCorto = new LinkedList<>();
      
     private Integer _distancia = Integer.MAX_VALUE;
      
@@ -19,23 +18,23 @@ public class Nodo
         _nodosVecinos.put(destino, distancia);
     }
   
-    public Nodo(String nombre) {
-        _nombre = nombre;
+    public Nodo(int id) {
+        _id = id;
     }
 
-	public String getNombre() {
-		return _nombre;
+	public int getId() {
+		return _id;
 	}
 
-	public void setNombre(String nombre) {
-		_nombre = nombre;
+	public void setId(int id) {
+		_id = id;
 	}
 
-	public List<Nodo> getCaminoMasCorto() {
+	public LinkedList<Integer> getCaminoMasCorto() {
 		return _caminoMasCorto;
 	}
 
-	public void setCaminoMasCorto(List<Nodo> caminoMasCorto) {
+	public void setCaminoMasCorto(LinkedList<Integer> caminoMasCorto) {
 		_caminoMasCorto = caminoMasCorto;
 	}
 

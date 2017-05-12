@@ -1,5 +1,7 @@
 package Mapeo;
 
+import java.util.ArrayList;
+
 import CaminoMinimo.*;
 import static org.junit.Assert.*;
 
@@ -19,7 +21,7 @@ public class GraficadorTest {
 	}
 	
 	@Test
-	public void tamañoTest()
+	public void tamanoTest()
 	{
 		Mapa map = MapaFeliz();
 		
@@ -30,7 +32,7 @@ public class GraficadorTest {
 	
 
 	@Test
-	public void tamañoSinPeajes()
+	public void tamanoSinPeajes()
 	{
 		Mapa map = MapaFeliz();
 		
@@ -40,7 +42,7 @@ public class GraficadorTest {
 	}
 	
 	@Test(expected = IllegalArgumentException.class)
-	public void tamañoNegativoTest()
+	public void tamanoNegativoTest()
 	{
 		Mapa map = MapaFeliz();
 		map.graficador(-1);
@@ -82,6 +84,21 @@ public class GraficadorTest {
 	}
 	
 	
+	@Test
+	public void sinPeajesA3(){
+		
+		Mapa m = MapaFeliz();
+		
+		Grafo reducido = m.caminoCorto(0, 0);
+		
+		Nodo tres = reducido.getNodo(3);
+		
+		assertTrue(tres.getCaminoMasCorto().get(0)==0);
+		assertTrue(tres.getCaminoMasCorto().get(1)==1);
+		assertTrue(tres.getCaminoMasCorto().get(2)==3);
+		assertTrue(tres.getDistancia()==12);
+	}
+	
 	
 	private Mapa MapaFeliz(){
 	
@@ -95,5 +112,7 @@ public class GraficadorTest {
 		return map;
 		
 	}
+	
+	
 	
 }

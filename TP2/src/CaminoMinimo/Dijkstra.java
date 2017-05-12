@@ -64,8 +64,8 @@ public class Dijkstra
 			    if (distanciaActual + pesoArista < nodoEvaluado.getDistancia())
 			    {
 			        nodoEvaluado.setDistancia(distanciaActual + pesoArista);
-			        LinkedList<Nodo> caminoMasCorto = new LinkedList<>(nodoActual.getCaminoMasCorto());
-			        caminoMasCorto.add(nodoActual);
+			        LinkedList<Integer> caminoMasCorto = new LinkedList<>(nodoActual.getCaminoMasCorto());
+			        caminoMasCorto.add(nodoActual.getId());
 			        nodoEvaluado.setCaminoMasCorto(caminoMasCorto);
 			    }
 			}

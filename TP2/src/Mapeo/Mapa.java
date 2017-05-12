@@ -1,7 +1,10 @@
 package Mapeo;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.HashSet;
+import java.util.LinkedList;
+
 import CaminoMinimo.*;
 
 public class Mapa {
@@ -78,43 +81,39 @@ public class Mapa {
 		
 		chequearPeajes(maxPeajes);
 		
-		int l = totalCiudades();
-		int lim = l + (l*maxPeajes);
+		int ciudades = totalCiudades();
+		int vertices = ciudades + (ciudades*maxPeajes);
 		
 		Grafo ret = new Grafo();
 		
-		ArrayList<Nodo> nodos = new ArrayList<>();
+		ArrayList<Nodo> nodos = crearNodos(vertices);
 		
-		for(int i=0;i<lim;i++){
+		for(int vertice=0;vertice<vertices;vertice++){
 			
-			Nodo n = new Nodo(""+i);
-			
-			nodos.add(n);
-		}
-		
-		for(int i=0;i<lim;i++){
-			
-			int h = i;
+			int verticeRelativo = vertice;
 			
 			int cont = 0;
-			while(h>=l){ h-=l; cont++;}
+			while(verticeRelativo>=ciudades){
+				verticeRelativo-=ciudades; 
+				cont++;
+				}
 			
-			for (int j : getVecinos(h)){
+			for (int vecino : getVecinos(verticeRelativo)){
 				
-				for(Ruta r : _ciudades.get(h)._rutas.get(_ciudades.get(j))){
+				for(Ruta r : _ciudades.get(verticeRelativo)._rutas.get(_ciudades.get(vecino))){
 					
-					if(i>=l)		j+=(l*cont);
+					if(vertice>=ciudades)		vecino+=(ciudades*cont);
 					
 					if(r._peaje){	
 						
-						if(j+l<lim){
+						if(vecino+ciudades<vertices){
 							
-							j+=l;
-							nodos.get(i).agregarArista(nodos.get(j), r._distancia);
+							vecino+=ciudades;
+							nodos.get(vertice).agregarArista(nodos.get(vecino), r._distancia);
 						}
 					}
 					
-					else nodos.get(i).agregarArista(nodos.get(j), r._distancia);
+					else nodos.get(vertice).agregarArista(nodos.get(vecino), r._distancia);
 				}
 			}
 		}
@@ -124,6 +123,80 @@ public class Mapa {
 		return ret;
 	}
 	
+	public Grafo caminoCorto(int desde, int peajes){
+		
+		Grafo ret = new Grafo();
+		
+		Grafo mapa = graficador(peajes);
+		
+		Grafo caminosCortos = Dijkstra.calcularCaminoMinimo(mapa, mapa.getNodo(desde));
+		
+		for(int i=0;i<totalCiudades();i++){
+			
+			Nodo n = caminoA(i,caminosCortos);
+			
+			ret.agregarNodo(n);
+		}
+		
+		return ret;
+	}
+	
+	private Nodo caminoA(int i, Grafo g){
+		
+		Nodo ret = new Nodo(i);
+		
+		LinkedList<Integer> camino = new LinkedList<>();
+		
+		int distanciaOptima = Integer.MAX_VALUE;
+		
+		int NodoOptimo = i;
+		
+		int aux = i;
+		
+		while(aux<g.getVertices()){
+			
+			int posible = g.getNodo(aux).getDistancia();
+			
+			if(posible<distanciaOptima){
+				
+				distanciaOptima = posible;
+				NodoOptimo = aux;
+			}
+			
+			aux+=totalCiudades();
+		}
+		
+		for(Integer n : g.getNodo(NodoOptimo).getCaminoMasCorto()){
+			
+			int id = n;
+			
+			while(id>=totalCiudades()){ id-=totalCiudades();}
+			
+			camino.add(id);
+		}
+		
+		
+		camino.add(i);
+		
+		ret.setDistancia(distanciaOptima);
+		ret.setCaminoMasCorto(camino);
+		
+		return ret;
+	}
+
+	private ArrayList<Nodo> crearNodos(int vertices) {
+		ArrayList<Nodo> nodos = new ArrayList<>();
+		
+		for(int i=0;i<vertices;i++){
+			
+			Nodo n = new Nodo(i);
+			
+			nodos.add(n);
+		}
+		return nodos;
+	}
+	
+
 	
 	private void chequearRuta(int i,int j,String accion){
 		
