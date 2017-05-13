@@ -3,10 +3,15 @@ package Interface;
 import java.awt.EventQueue;
 
 import javax.swing.JFrame;
+import javax.swing.JInternalFrame;
 
-public class Ventana {
+import Mapeo.Mapa;
+
+public class VentanaPrincipal {
 
 	private JFrame frame;
+	private VentanaMapa frameMap;
+	private Mapa map;
 
 	/**
 	 * Launch the application.
@@ -15,7 +20,7 @@ public class Ventana {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
-					Ventana window = new Ventana();
+					VentanaPrincipal window = new VentanaPrincipal();
 					window.frame.setVisible(true);
 				} catch (Exception e) {
 					e.printStackTrace();
@@ -27,7 +32,7 @@ public class Ventana {
 	/**
 	 * Create the application.
 	 */
-	public Ventana() {
+	public VentanaPrincipal() {
 		initialize();
 	}
 
@@ -36,8 +41,14 @@ public class Ventana {
 	 */
 	private void initialize() {
 		frame = new JFrame();
-		frame.setBounds(100, 100, 450, 300);
+		frame.setBounds(100, 100, 600, 400);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		frame.getContentPane().setLayout(null);
+		
+		frameMap = new VentanaMapa();
+		
+		JInternalFrame internalFrame = frameMap.frame;
+		frame.getContentPane().add(internalFrame);
+		internalFrame.setVisible(true);
 	}
-
 }

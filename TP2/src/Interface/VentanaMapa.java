@@ -4,10 +4,14 @@ import java.awt.EventQueue;
 
 import javax.swing.JFrame;
 import javax.swing.JInternalFrame;
+import javax.swing.plaf.basic.BasicInternalFrameUI;
 
-public class Mapa {
+import org.openstreetmap.gui.jmapviewer.JMapViewer;
 
-	private JFrame frame;
+public class VentanaMapa {
+
+	protected JInternalFrame frame;
+	protected JMapViewer map;
 
 	/**
 	 * Launch the application.
@@ -16,7 +20,7 @@ public class Mapa {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
-					Mapa window = new Mapa();
+					VentanaMapa window = new VentanaMapa();
 					window.frame.setVisible(true);
 				} catch (Exception e) {
 					e.printStackTrace();
@@ -28,7 +32,7 @@ public class Mapa {
 	/**
 	 * Create the application.
 	 */
-	public Mapa() {
+	public VentanaMapa() {
 		initialize();
 	}
 
@@ -36,14 +40,15 @@ public class Mapa {
 	 * Initialize the contents of the frame.
 	 */
 	private void initialize() {
-		frame = new JFrame();
-		frame.setBounds(100, 100, 450, 300);
+		frame = new JInternalFrame();
+		frame.setBounds(0, 0, 400, 400);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frame.getContentPane().setLayout(null);
+		frame.setBorder(null);;
+		((BasicInternalFrameUI) frame.getUI()).setNorthPane(null);
 		
-		JInternalFrame internalFrame = new JInternalFrame("New JInternalFrame");
-		internalFrame.setBounds(12, 24, 314, 264);
-		frame.getContentPane().add(internalFrame);
-		internalFrame.setVisible(true);
+		map = new JMapViewer();
+		map.setBounds(0,0,400,400);
+		frame.getContentPane().add(map);
 	}
 }
