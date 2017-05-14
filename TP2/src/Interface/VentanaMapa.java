@@ -23,10 +23,10 @@ public class VentanaMapa {
 	private JTextField _textLon;
 
 
-	public VentanaMapa(JTextField textLat,JTextField textLon) {
+	public VentanaMapa(Datos d) {
 		
-		_textLat = textLat;
-		_textLon = textLon;
+		_textLat = d._textLat;
+		_textLon = d._textLon;
 	
 		_frame = new JInternalFrame();
 		_frame.setBounds(0, 0, 400, 362);
@@ -34,7 +34,7 @@ public class VentanaMapa {
 		_frame.getContentPane().setLayout(null);
 		((BasicInternalFrameUI) _frame.getUI()).setNorthPane(null);
 		
-		_map = new JMapViewer();
+		_map = d._jmap;
 		_map.setBounds(0,0,400,400);
 		_posicion = new MapMarkerDot(_map.getPosition());
 		_posicion.setVisible(false);
@@ -47,14 +47,18 @@ public class VentanaMapa {
 			public void mouseClicked(MouseEvent e) {
 				
 				if (e.getButton() == MouseEvent.BUTTON1){
-					_textLat.setText(""+_map.getPosition(e.getPoint()).getLat());
-					_posicion.setLat(_map.getPosition(e.getPoint()).getLat());
 					
-					_textLon.setText(""+_map.getPosition(e.getPoint()).getLon());
-					_posicion.setLon(_map.getPosition(e.getPoint()).getLon());
-					
-					_posicion.setVisible(true);
-					_map.updateUI();
+					if(d._rbAgregar.isSelected()){
+											
+						_textLat.setText(""+_map.getPosition(e.getPoint()).getLat());
+						_posicion.setLat(_map.getPosition(e.getPoint()).getLat());
+						
+						_textLon.setText(""+_map.getPosition(e.getPoint()).getLon());
+						_posicion.setLon(_map.getPosition(e.getPoint()).getLon());
+						
+						_posicion.setVisible(true);
+						_map.updateUI();
+					}
 				}
 			}
 		});
