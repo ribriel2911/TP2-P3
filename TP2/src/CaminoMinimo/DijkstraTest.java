@@ -65,20 +65,20 @@ public class DijkstraTest
 		Nodo nodoA = new Nodo(0);
 		Nodo nodoB = new Nodo(1);
 		Nodo nodoC = new Nodo(2);
-		Nodo nodeD = new Nodo(3); 
+		Nodo nodoD = new Nodo(3); 
 		Nodo nodoE = new Nodo(4);
 		Nodo nodoF = new Nodo(5);
 		 
 		nodoA.agregarArista(nodoB, 10);
 		nodoA.agregarArista(nodoC, 15);
 		 
-		nodoB.agregarArista(nodeD, 12);
+		nodoB.agregarArista(nodoD, 12);
 		nodoB.agregarArista(nodoF, 15);
 		 
 		nodoC.agregarArista(nodoE, 10);
 		 
-		nodeD.agregarArista(nodoE, 2);
-		nodeD.agregarArista(nodoF, 1);
+		nodoD.agregarArista(nodoE, 2);
+		nodoD.agregarArista(nodoF, 1);
 		 
 		nodoF.agregarArista(nodoE, 5);
 		 
@@ -87,7 +87,7 @@ public class DijkstraTest
 		grafo.agregarNodo(nodoA);
 		grafo.agregarNodo(nodoB);
 		grafo.agregarNodo(nodoC);
-		grafo.agregarNodo(nodeD);
+		grafo.agregarNodo(nodoD);
 		grafo.agregarNodo(nodoE);
 		grafo.agregarNodo(nodoF);
 		

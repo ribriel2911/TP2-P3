@@ -15,11 +15,13 @@ public class Nodo
      
     Map<Nodo, Integer> _nodosVecinos = new HashMap<>();
  
-    public void agregarArista(Nodo destino, int distancia) {
+    public void agregarArista(Nodo destino, int distancia) 
+    {
         _nodosVecinos.put(destino, distancia);
     }
   
-    public Nodo(int id) {
+    public Nodo(int id) 
+    {
         _id = id;
     }
 
@@ -27,11 +29,13 @@ public class Nodo
 		return _id;
 	}
 
-	public void setId(int id) {
+	public void setId(int id) 
+	{
 		_id = id;
 	}
 
-	public LinkedList<Integer> getCaminoMasCorto() {
+	public LinkedList<Integer> getCaminoMasCorto() 
+	{
 		return _caminoMasCorto;
 	}
 
@@ -39,35 +43,40 @@ public class Nodo
 		_caminoMasCorto = caminoMasCorto;
 	}
 
-	public Integer getDistancia() {
+	public Integer getDistancia() 
+	{
 		return _distancia;
 	}
 
-	public void setDistancia(Integer distancia) {
+	public void setDistancia(Integer distancia) 
+	{
 		_distancia = distancia;
 	}
 
-	public Map<Nodo, Integer> getNodosVecinos() {
+	public Map<Nodo, Integer> getNodosVecinos() 
+	{
 		return _nodosVecinos;
 	}
 
-	public void setNodosVecinos(Map<Nodo, Integer> nodosVecinos) {
+	public void setNodosVecinos(Map<Nodo, Integer> nodosVecinos) 
+	{
 		_nodosVecinos = nodosVecinos;
 	} 
 	
-	public static ArrayList<Nodo> crearNodos(int vertices) {
+	public static ArrayList<Nodo> crearNodos(int cantidadNodos) 
+	{
+		if(cantidadNodos<0)
+			throw new IllegalArgumentException("Se intentó crear una cantidad negativa de nodos: " + cantidadNodos);
 		
-		if(vertices<0){
-			throw new IllegalArgumentException("Se crear una cantidad negativa de nodos: "+vertices);
-		}
 		
 		ArrayList<Nodo> nodos = new ArrayList<>();
 		
-		for(int i=0;i<vertices;i++){
-			
+		for(int i=0;i<cantidadNodos;i++)
+		{
 			Nodo n = new Nodo(i);
 			nodos.add(n);
 		}
+		
 		return nodos;
 	}
 }
