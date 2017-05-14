@@ -5,6 +5,8 @@ import java.util.HashMap;
 import java.util.HashSet;
 import java.util.LinkedList;
 
+import org.openstreetmap.gui.jmapviewer.Coordinate;
+
 import CaminoMinimo.*;
 
 public class Mapa {
@@ -16,7 +18,7 @@ public class Mapa {
 		_ciudades = new ArrayList<Ciudad>();
 		
 		for(int i=0; i<verticesIniciales; ++i)
-			_ciudades.add(new Ciudad(i,"Ciudad:"+i));
+			_ciudades.add(new Ciudad(i,"Ciudad:"+i,null));
 	}
 	
 	public Mapa()	{_ciudades = new ArrayList<Ciudad>();}
@@ -37,16 +39,33 @@ public class Mapa {
 		_ciudades.get(j).destruirRuta(_ciudades.get(i),dist,peaje);
 	}
 	
-	public void agregarCiudad(String nombre){
+	public void agregarCiudad(String nombre, Coordinate cord){
 		
 		int id = _ciudades.size();
 		
-		_ciudades.add(new Ciudad(id,nombre));
+		_ciudades.add(new Ciudad(id,nombre, cord));
 	}
 	
 	public int totalCiudades(){
 		
 		return _ciudades.size();
+	}
+	
+	public ArrayList<Coordinate> getCoordenadas(){
+		
+		ArrayList<Coordinate> ret = new ArrayList<>();
+		
+		for(Ciudad c : _ciudades){
+			
+			ret.add(c.getCoordenadas());
+		}
+		
+		return ret;
+	}
+	
+	public Coordinate getCoordenadas(int i){
+		
+		return _ciudades.get(i).getCoordenadas();
 	}
 	
 	public HashSet<Integer> getVecinos(int ciudad){

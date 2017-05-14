@@ -4,6 +4,7 @@ import javax.swing.ButtonGroup;
 import javax.swing.JRadioButton;
 import javax.swing.JTextField;
 
+import org.openstreetmap.gui.jmapviewer.Coordinate;
 import org.openstreetmap.gui.jmapviewer.JMapViewer;
 
 import Mapeo.Mapa;
@@ -28,6 +29,10 @@ public class Datos {
 		_jmap			= new JMapViewer();
 		
 		_mapa			= new Mapa();
+		_mapa.agregarCiudad("SanFernando", new Coordinate(-34.4442,-58.5775));
+		_mapa.agregarCiudad("Tigre", new Coordinate(-34.4167, -58.5833));
+		_mapa.agregarCiudad("San Isidro", new Coordinate(-34.4708, -58.5286));
+		_mapa.agregarCiudad("San Miguel", new Coordinate(-34.5239, -58.7794));
 		
 		_textName		= new JTextField();
 		_textLat		= new JTextField();

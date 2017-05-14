@@ -1,5 +1,6 @@
 package Interface;
 
+import java.awt.Color;
 import java.awt.EventQueue;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
@@ -13,12 +14,13 @@ import javax.swing.plaf.basic.BasicInternalFrameUI;
 import org.openstreetmap.gui.jmapviewer.Coordinate;
 import org.openstreetmap.gui.jmapviewer.JMapViewer;
 import org.openstreetmap.gui.jmapviewer.MapMarkerDot;
+import org.openstreetmap.gui.jmapviewer.interfaces.MapPolygon;
 
 public class VentanaMapa {
 
 	protected JInternalFrame _frame;
-	protected JMapViewer _map;
-	protected MapMarkerDot _posicion;
+	private JMapViewer _map;
+	private MapMarkerDot _posicion;
 	private JTextField _textLat;
 	private JTextField _textLon;
 
@@ -39,6 +41,14 @@ public class VentanaMapa {
 		_posicion = new MapMarkerDot(_map.getPosition());
 		_posicion.setVisible(false);
 		_map.addMapMarker(_posicion);
+		
+		for(Coordinate c : d._mapa.getCoordenadas()){
+			
+			MapMarkerDot ciudad = new MapMarkerDot(c);
+			ciudad.setBackColor(Color.BLUE);
+		//	ciudad.setColor(Color.BLUE);
+			_map.addMapMarker(ciudad);
+		}
 		
 		_frame.getContentPane().add(_map);
 		

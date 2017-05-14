@@ -4,18 +4,20 @@ import java.util.HashMap;
 import java.util.HashSet;
 import java.util.Set;
 
+import org.openstreetmap.gui.jmapviewer.Coordinate;
+
 public class Ciudad {
 	
 	protected	int								_id;
 	protected	String							_nombre;
-	protected	int								_latitud;
-	protected	int								_longitud;
+	protected 	Coordinate						_coordenadas;
 	protected	HashMap<Ciudad,HashSet<Ruta>>	_rutas;
 	
-	public Ciudad(int id, String nombre){
+	public Ciudad(int id, String nombre, Coordinate cord){
 		
 		_id = id;
 		_nombre = nombre;
+		_coordenadas = cord;
 		_rutas = new HashMap<Ciudad,HashSet<Ruta>>();
 	}
 	
@@ -70,4 +72,6 @@ public class Ciudad {
 	public int getCantVecinos()					{return _rutas.size();}
 	
 	public Set<Ruta> getRutas(Ciudad destino)	{return _rutas.get(destino);}
+	
+	public Coordinate getCoordenadas()			{return _coordenadas;}
 }
