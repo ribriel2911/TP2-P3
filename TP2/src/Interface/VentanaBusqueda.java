@@ -1,9 +1,11 @@
 package Interface;
 
+import java.awt.Color;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
+import java.util.HashMap;
 
 import javax.swing.JButton;
 import javax.swing.JFrame;
@@ -12,6 +14,9 @@ import javax.swing.JLabel;
 import javax.swing.JRadioButton;
 import javax.swing.JTextField;
 import javax.swing.plaf.basic.BasicInternalFrameUI;
+
+import CaminoMinimo.Grafo;
+import Mapeo.Ciudad;
 
 public class VentanaBusqueda {
 	
@@ -24,8 +29,11 @@ public class VentanaBusqueda {
 	private 	JLabel				_lblPeajes;
 	private 	JButton				_btnBuscar;
 	private		JRadioButton		_rbAgregar;
+	private		Datos				_d;
 
 	public VentanaBusqueda(Datos d){
+		
+		_d = d;
 		
 		_frame = new JInternalFrame();
 		_frame.setBounds(400, 200, 200, 200);
@@ -38,7 +46,7 @@ public class VentanaBusqueda {
 		_lblDesde.setBounds(5, 14, 78, 14);
 		_frame.getContentPane().add(_lblDesde);
 		
-		_textDesde = d._textDesde;
+		_textDesde = _d._textDesde;
 		_textDesde.setBounds(60, 11, 110, 20);
 		_frame.getContentPane().add(_textDesde);
 		_textDesde.setColumns(10);
@@ -49,7 +57,7 @@ public class VentanaBusqueda {
 				
 				if (e.getButton() == MouseEvent.BUTTON1){
 				
-					d._textSelector = false;
+					_d._textSelector = false;
 				}
 			}
 		});
@@ -58,7 +66,7 @@ public class VentanaBusqueda {
 		_lblHasta.setBounds(5, 45, 78, 14);
 		_frame.getContentPane().add(_lblHasta);
 		
-		_textHasta = d._textHasta;
+		_textHasta = _d._textHasta;
 		_textHasta.setBounds(60, 42, 110, 20);
 		_frame.getContentPane().add(_textHasta);
 		_textHasta.setColumns(10);
@@ -69,7 +77,7 @@ public class VentanaBusqueda {
 				
 				if (e.getButton() == MouseEvent.BUTTON1){
 				
-					d._textSelector = true;
+					_d._textSelector = true;
 				}
 			}
 		});
@@ -78,12 +86,12 @@ public class VentanaBusqueda {
 		_lblPeajes.setBounds(5, 76, 78, 14);
 		_frame.getContentPane().add(_lblPeajes);
 		
-		_textPeajes = d._textPeajes;
+		_textPeajes = _d._textPeajes;
 		_textPeajes.setBounds(60, 73, 110, 20);
 		_frame.getContentPane().add(_textPeajes);
 		_textPeajes.setColumns(10);
 		
-		_rbAgregar = d._rbBuscar;
+		_rbAgregar = _d._rbBuscar;
 		_rbAgregar.setBounds(5, 105, 20, 20);
 		_frame.getContentPane().add(_rbAgregar);
 		
@@ -94,6 +102,32 @@ public class VentanaBusqueda {
 		_btnBuscar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				
+				_d.repintarRutas();
+				
+				int desde = _d._mapa.getIdCiudad(_textDesde.getText());
+				int hasta = _d._mapa.getIdCiudad(_textHasta.getText());
+				int peajes = Integer.valueOf(_textPeajes.getText());
+				
+				Grafo g = _d._mapa.caminoCorto(desde, peajes);
+				
+				int anterior = -1;
+				
+				for(int i : g.getNodo(hasta).getCaminoMasCorto()){
+					
+					_d._ciudades.get(i).setBackColor(Color.GREEN);
+						
+					if(anterior>=0){
+						
+						_d._rutas.get(anterior).get(i).setColor(Color.green);
+						_d._rutas.get(i).get(anterior).setColor(Color.green);
+						
+						anterior = i;
+					}
+					
+					else anterior = i;
+				}
+				
+				_d._jmap.updateUI();
 			}
 		});
 	}

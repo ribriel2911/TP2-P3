@@ -70,6 +70,17 @@ public class Mapa {
 		return _ciudades.get(i)._nombre;
 	}
 	
+	public int getIdCiudad(String s){
+		
+		for(Ciudad c : _ciudades){
+			
+			if(c._nombre.equals(s)){
+				return c._id;
+			}
+		}
+		throw new IllegalArgumentException("No existe una ciudad con nombre: "+ s);
+	}
+	
 	public int totalCiudades(){
 		
 		return _ciudades.size();

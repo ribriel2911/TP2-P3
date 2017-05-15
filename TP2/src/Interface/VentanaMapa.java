@@ -6,6 +6,7 @@ import java.awt.Point;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.util.ArrayList;
+import java.util.HashMap;
 
 import javax.swing.JFrame;
 import javax.swing.JInternalFrame;
@@ -31,6 +32,7 @@ public class VentanaMapa {
 	private MapMarkerDot _selectedDesde;
 	private MapMarkerDot _selectedHasta;
 	private ArrayList<MapMarkerDot> _ciudades;
+	private	HashMap<Integer,HashMap<Integer,MapPolygonImpl>> _rutas;
 	private JTextField _textLat;
 	private JTextField _textLon;
 	private Datos _d;
@@ -56,7 +58,8 @@ public class VentanaMapa {
 		_position.setVisible(false);
 		_map.addMapMarker(_position);
 		
-		_ciudades = new ArrayList<>();
+		_ciudades = d._ciudades;
+		_rutas = d._rutas;
 		
 		dibujarMapa();
 		
@@ -70,8 +73,7 @@ public class VentanaMapa {
 					
 					if(_d._rbAgregar.isSelected()){
 						
-						if(_selectedDesde!=null)	_selectedDesde.setBackColor(Color.BLUE);
-						if(_selectedHasta!=null)	_selectedHasta.setBackColor(Color.BLUE);
+						_d.repintarRutas();
 											
 						_textLat.setText(""+_map.getPosition(e.getPoint()).getLat());
 						_position.setLat(_map.getPosition(e.getPoint()).getLat());
@@ -116,19 +118,21 @@ public class VentanaMapa {
 			MapMarkerDot ciudad = new MapMarkerDot(_d._mapa.getCoordenadas(i));
 			ciudad.setBackColor(Color.BLUE);
 			ciudad.setName(_d._mapa.getNameCiudad(i));
-			ciudad.setFont(null);
 			
 			_ciudades.add(ciudad);
 			_map.addMapMarker(ciudad);
 			
+			_rutas.put(i, new HashMap<>());
+			
 			for(int j : _d._mapa.getVecinos(i)){
 				
-				MapPolygonImpl p = new MapPolygonImpl(_d._mapa.getCoordenadas(i),_d._mapa.getCoordenadas(j),_d._mapa.getCoordenadas(i));
+				MapPolygonImpl ruta = new MapPolygonImpl(_d._mapa.getCoordenadas(i),_d._mapa.getCoordenadas(j),_d._mapa.getCoordenadas(i));
 				
-				if(_d._mapa.hayPeaje(i, j))	p.setColor(Color.red);
-				else						p.setColor(Color.blue);
+				if(_d._mapa.hayPeaje(i, j))	ruta.setColor(Color.red);
+				else						ruta.setColor(Color.blue);
 				
-				_map.addMapPolygon(p);
+				_rutas.get(i).put(j, ruta);
+				_map.addMapPolygon(ruta);
 			}
 		}
 	}
