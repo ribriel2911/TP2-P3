@@ -49,6 +49,22 @@ public class MapaTest{
 	}
 	
 	@Test
+	public void conPeaje(){
+		
+		Mapa mapa = new Mapa(4);
+		mapa.agregarRuta(0, 2,true);
+		assertTrue( mapa.hayPeaje(0, 2));
+	}
+	
+	@Test
+	public void sinPeaje(){
+		
+		Mapa mapa = new Mapa(4);
+		mapa.agregarRuta(0, 2,false);
+		assertFalse( mapa.hayPeaje(0, 2));
+	}
+	
+	@Test
 	public void destruirRutaTest(){
 		Mapa mapa = new Mapa(4);
 		mapa.agregarRuta(1, 2,false);

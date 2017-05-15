@@ -191,15 +191,15 @@ public class MapaGraficadoTest {
 	
 		Mapa map = new Mapa(4);
 		map.agregarRuta(0, 1, false);
-		map._ciudades.get(0).encontrarRuta(map._ciudades.get(1), false).set_distancia(6);
+		map._ciudades.get(0)._rutas.get(map._ciudades.get(1)).set_distancia(6);
 		map.agregarRuta(0, 2, true);
-		map._ciudades.get(0).encontrarRuta(map._ciudades.get(2), true).set_distancia(4);
+		map._ciudades.get(0)._rutas.get(map._ciudades.get(2)).set_distancia(4);
 		map.agregarRuta(0, 3, true);
-		map._ciudades.get(0).encontrarRuta(map._ciudades.get(3), true).set_distancia(10);
+		map._ciudades.get(0)._rutas.get(map._ciudades.get(3)).set_distancia(10);
 		map.agregarRuta(1, 3, false);
-		map._ciudades.get(1).encontrarRuta(map._ciudades.get(3), false).set_distancia(6);
+		map._ciudades.get(1)._rutas.get(map._ciudades.get(3)).set_distancia(6);
 		map.agregarRuta(2, 3, true);
-		map._ciudades.get(2).encontrarRuta(map._ciudades.get(3), true).set_distancia(4);
+		map._ciudades.get(2)._rutas.get(map._ciudades.get(3)).set_distancia(4);
 		
 		return map;
 	}

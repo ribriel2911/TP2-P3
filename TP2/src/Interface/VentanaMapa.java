@@ -27,7 +27,9 @@ public class VentanaMapa {
 
 	protected JInternalFrame _frame;
 	private JMapViewer _map;
-	private MapMarkerDot _posicion;
+	private MapMarkerDot _position;
+	private MapMarkerDot _selectedDesde;
+	private MapMarkerDot _selectedHasta;
 	private ArrayList<MapMarkerDot> _ciudades;
 	private JTextField _textLat;
 	private JTextField _textLon;
@@ -50,9 +52,9 @@ public class VentanaMapa {
 		_map.setBounds(0,0,400,400);
 		_map.setDisplayPositionByLatLon(-34.5043031,-58.6363941, 10);
 		
-		_posicion = new MapMarkerDot(_map.getPosition());
-		_posicion.setVisible(false);
-		_map.addMapMarker(_posicion);
+		_position = new MapMarkerDot(_map.getPosition());
+		_position.setVisible(false);
+		_map.addMapMarker(_position);
 		
 		_ciudades = new ArrayList<>();
 		
@@ -67,25 +69,38 @@ public class VentanaMapa {
 				if (e.getButton() == MouseEvent.BUTTON1){
 					
 					if(_d._rbAgregar.isSelected()){
+						
+						if(_selectedDesde!=null)	_selectedDesde.setBackColor(Color.BLUE);
+						if(_selectedHasta!=null)	_selectedHasta.setBackColor(Color.BLUE);
 											
 						_textLat.setText(""+_map.getPosition(e.getPoint()).getLat());
-						_posicion.setLat(_map.getPosition(e.getPoint()).getLat());
+						_position.setLat(_map.getPosition(e.getPoint()).getLat());
 						
 						_textLon.setText(""+_map.getPosition(e.getPoint()).getLon());
-						_posicion.setLon(_map.getPosition(e.getPoint()).getLon());
+						_position.setLon(_map.getPosition(e.getPoint()).getLon());
 						
-						_posicion.setVisible(true);
+						_position.setVisible(true);
 					}
 					
 					else{
-						_posicion.setVisible(false);
+						_position.setVisible(false);
 						
-						MapMarkerDot seleccionado = buscarSercano(e.getPoint());
+						if(!d._textSelector){
 						
-						seleccionado.setBackColor(Color.GREEN);;
+							if(_selectedDesde!=null)	_selectedDesde.setBackColor(Color.BLUE);
+							_selectedDesde = buscarSercano(e.getPoint());
+							_selectedDesde.setBackColor(Color.ORANGE);;
+							
+							d._textDesde.setText(_selectedDesde.getName());
+						}
 						
-						d.seleccionado().setText(seleccionado.getName());
-						System.out.println(seleccionado.getName());
+						else{
+							if(_selectedHasta!=null)	_selectedHasta.setBackColor(Color.BLUE);
+							_selectedHasta = buscarSercano(e.getPoint());
+							_selectedHasta.setBackColor(Color.ORANGE);;
+							
+							d._textHasta.setText(_selectedHasta.getName());
+						}
 					}
 					
 					_map.updateUI();
@@ -100,7 +115,7 @@ public class VentanaMapa {
 			
 			MapMarkerDot ciudad = new MapMarkerDot(_d._mapa.getCoordenadas(i));
 			ciudad.setBackColor(Color.BLUE);
-			ciudad.setName(_d._mapa.getCiudad(i));
+			ciudad.setName(_d._mapa.getNameCiudad(i));
 			ciudad.setFont(null);
 			
 			_ciudades.add(ciudad);
@@ -109,7 +124,10 @@ public class VentanaMapa {
 			for(int j : _d._mapa.getVecinos(i)){
 				
 				MapPolygonImpl p = new MapPolygonImpl(_d._mapa.getCoordenadas(i),_d._mapa.getCoordenadas(j),_d._mapa.getCoordenadas(i));
-				p.setBackColor(Color.blue);
+				
+				if(_d._mapa.hayPeaje(i, j))	p.setColor(Color.red);
+				else						p.setColor(Color.blue);
+				
 				_map.addMapPolygon(p);
 			}
 		}
@@ -137,8 +155,6 @@ public class VentanaMapa {
 		double distancia = Double.MAX_VALUE;
 		
 		for(MapMarkerDot m : _ciudades){
-			
-			m.setBackColor(Color.BLUE);
 			
 			if(distanciaCoord(_map.getPosition(p),m.getCoordinate())<distancia){
 				

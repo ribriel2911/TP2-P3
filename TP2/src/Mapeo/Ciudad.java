@@ -11,65 +11,44 @@ public class Ciudad {
 	protected	int								_id;
 	protected	String							_nombre;
 	protected 	Coordinate						_coordenadas;
-	protected	HashMap<Ciudad,HashSet<Ruta>>	_rutas;
+	protected	HashMap<Ciudad,Ruta>	_rutas;
 	
 	public Ciudad(int id, String nombre, Coordinate cord){
 		
 		_id = id;
 		_nombre = nombre;
 		_coordenadas = cord;
-		_rutas = new HashMap<Ciudad,HashSet<Ruta>>();
-	}
-	
-	public Ruta encontrarRuta(Ciudad c,boolean peaje){
-		
-		if(existeRuta(c)){
-		
-			for(Ruta r : _rutas.get(c)){
-				
-				if(r._peaje		==	peaje)
-					
-					return r;
-			}
-		}
-		return null;	
+		_rutas = new HashMap<>();
 	}
 	
 	public void construirRuta(Ciudad destino,boolean peaje){
 		
-		if(!existeRuta(destino))	{_rutas.put(destino, new HashSet<Ruta>());}
-		
-		_rutas.get(destino).add(new Ruta(distanciaCoord(destino),peaje));
+		_rutas.put(destino, new Ruta(distanciaCoord(destino),peaje));
 	}
 	
-	public void destruirRuta(Ciudad destino, boolean peaje)	{
+	public void destruirRuta(Ciudad destino)	{
 		
-		Ruta r = encontrarRuta(destino,peaje);
-		
-		if(r!=null && _rutas.get(destino).remove(r)){
-		
-			if(_rutas.get(destino).size()==0){
+		if(existeRuta(destino)){
+	
 				_rutas.remove(destino);
-			}
 		}
 		
 		else{
 		throw new IllegalArgumentException("No se pudo eliminar la ruta con los parametros\n"
 				+ "Origen: Ciudad "+_id+"\n"
-				+ "Destino: Ciudad "+destino._id+"\n"
-				+ "Peaje:" + peaje);
+				+ "Destino: Ciudad "+destino._id);
 		}
 	}
 	
 	public boolean existeRuta(Ciudad destino)	{return _rutas.containsKey(destino);}
 	
-	public int cantRutas(Ciudad destino)		{return _rutas.get(destino).size();}
-	
+	public boolean hayPeaje(Ciudad destino)		{return _rutas.get(destino)._peaje;}
+		
 	public Set<Ciudad> getVecinos()				{return _rutas.keySet();}
 	
 	public int getCantVecinos()					{return _rutas.size();}
 	
-	public Set<Ruta> getRutas(Ciudad destino)	{return _rutas.get(destino);}
+	public Ruta getRuta(Ciudad destino)			{return _rutas.get(destino);}
 	
 	public Coordinate getCoordenadas()			{return _coordenadas;}
 	

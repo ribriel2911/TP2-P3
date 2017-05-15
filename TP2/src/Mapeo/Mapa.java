@@ -35,8 +35,8 @@ public class Mapa {
 		
 		chequearRuta(i,j,"eliminar");
 		
-		_ciudades.get(i).destruirRuta(_ciudades.get(j),peaje);
-		_ciudades.get(j).destruirRuta(_ciudades.get(i),peaje);
+		_ciudades.get(i).destruirRuta(_ciudades.get(j));
+		_ciudades.get(j).destruirRuta(_ciudades.get(i));
 	}
 	
 	public void agregarCiudad(String nombre, Coordinate cord){
@@ -46,7 +46,26 @@ public class Mapa {
 		_ciudades.add(new Ciudad(id,nombre, cord));
 	}
 	
-	public String getCiudad(int i){
+	public Ciudad getCiudad(String s){
+		
+		for(Ciudad c : _ciudades){
+			
+			if(c._nombre.equals(s)){
+				return c;
+			}
+		}
+		
+		throw new IllegalArgumentException("No existe una ciudad con nombre: "+ s);
+	}
+	
+	public Ciudad getCiudad(int i){
+		
+		chequearCiudad(i, "el indice");
+		
+		return _ciudades.get(i);
+	}
+	
+	public String getNameCiudad(int i){
 		
 		return _ciudades.get(i)._nombre;
 	}
@@ -101,6 +120,16 @@ public class Mapa {
 		return _ciudades.get(i).existeRuta(_ciudades.get(j));
 	}
 	
+	public boolean hayPeaje(int i, int j){
+		
+		if(existeRuta(i,j)){
+			
+			return _ciudades.get(i).hayPeaje(_ciudades.get(j));
+		}
+		
+		return false;
+	}
+	
 	public Grafo graficador(int maxPeajes){
 		
 		chequearPeajes(maxPeajes);
@@ -124,21 +153,19 @@ public class Mapa {
 			
 			for (int vecino : getVecinos(verticeRelativo)){
 				
-				for(Ruta r : _ciudades.get(verticeRelativo)._rutas.get(_ciudades.get(vecino))){
+				Ruta r = _ciudades.get(verticeRelativo)._rutas.get(_ciudades.get(vecino));
 					
-					if(vertice>=ciudades)		vecino+=(ciudades*cont);
+				if(vertice>=ciudades)		vecino+=(ciudades*cont);
 					
-					if(r._peaje){	
+				if(r._peaje){	
 						
-						if(vecino+ciudades<vertices){
+					if(vecino+ciudades<vertices){
 							
-							vecino+=ciudades;
-							nodos.get(vertice).agregarArista(nodos.get(vecino),(int) r._distancia);
-						}
+						vecino+=ciudades;
+						nodos.get(vertice).agregarArista(nodos.get(vecino),(int) r._distancia);
 					}
-					
-					else nodos.get(vertice).agregarArista(nodos.get(vecino),(int) r._distancia);
 				}
+				else nodos.get(vertice).agregarArista(nodos.get(vecino),(int) r._distancia);
 			}
 		}
 		
