@@ -89,7 +89,7 @@ public class VentanaMapa {
 						
 						if(!d._textSelector){
 						
-							if(_selectedDesde!=null)	_selectedDesde.setBackColor(Color.BLUE);
+							if(_selectedDesde!=null)	_selectedDesde.setBackColor(Color.WHITE);
 							_selectedDesde = buscarSercano(e.getPoint());
 							_selectedDesde.setBackColor(Color.ORANGE);;
 							
@@ -97,7 +97,7 @@ public class VentanaMapa {
 						}
 						
 						else{
-							if(_selectedHasta!=null)	_selectedHasta.setBackColor(Color.BLUE);
+							if(_selectedHasta!=null)	_selectedHasta.setBackColor(Color.WHITE);
 							_selectedHasta = buscarSercano(e.getPoint());
 							_selectedHasta.setBackColor(Color.ORANGE);;
 							
@@ -116,7 +116,7 @@ public class VentanaMapa {
 		for(int i=0;i<_d._mapa.totalCiudades();i++){
 			
 			MapMarkerDot ciudad = new MapMarkerDot(_d._mapa.getCoordenadas(i));
-			ciudad.setBackColor(Color.BLUE);
+			ciudad.setBackColor(Color.WHITE);
 			ciudad.setName(_d._mapa.getNameCiudad(i));
 			
 			_ciudades.add(ciudad);

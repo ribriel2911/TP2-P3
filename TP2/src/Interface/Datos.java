@@ -78,7 +78,7 @@ public class Datos {
 		
 		for(int i : _rutas.keySet()){
 			
-			_ciudades.get(i).setBackColor(Color.BLUE);
+			_ciudades.get(i).setBackColor(Color.WHITE);
 			
 			for(int j : _rutas.get(i).keySet()){
 				
