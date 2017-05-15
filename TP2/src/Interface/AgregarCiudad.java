@@ -17,7 +17,7 @@ import javax.swing.plaf.basic.BasicInternalFrameUI;
 import org.openstreetmap.gui.jmapviewer.Coordinate;
 import org.openstreetmap.gui.jmapviewer.MapMarkerDot;
 
-public class VentanaAgregar {
+public class AgregarCiudad {
 
 	protected	JInternalFrame		_frame;
 	private		JTextField			_textName;
@@ -30,7 +30,7 @@ public class VentanaAgregar {
 	private		JRadioButton		_rbAgregar;
 	private		Datos				_d;
 	
-	public VentanaAgregar(Datos d){
+	public AgregarCiudad(Datos d){
 		
 		_d = d;
 		

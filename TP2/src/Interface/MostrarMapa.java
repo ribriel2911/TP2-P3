@@ -24,7 +24,7 @@ import org.openstreetmap.gui.jmapviewer.interfaces.MapPolygon;
 
 import Mapeo.Ciudad;
 
-public class VentanaMapa {
+public class MostrarMapa {
 
 	protected JInternalFrame _frame;
 	private JMapViewer _map;
@@ -38,7 +38,7 @@ public class VentanaMapa {
 	private Datos _d;
 
 
-	public VentanaMapa(Datos d) {
+	public MostrarMapa(Datos d) {
 		
 		_d = d;
 		_textLat = _d._textLat;

@@ -18,7 +18,7 @@ import javax.swing.plaf.basic.BasicInternalFrameUI;
 import CaminoMinimo.Grafo;
 import Mapeo.Ciudad;
 
-public class VentanaBusqueda {
+public class Busqueda {
 	
 	protected	JInternalFrame		_frame;
 	private		JTextField			_textDesde;
@@ -31,7 +31,7 @@ public class VentanaBusqueda {
 	private		JRadioButton		_rbAgregar;
 	private		Datos				_d;
 
-	public VentanaBusqueda(Datos d){
+	public Busqueda(Datos d){
 		
 		_d = d;
 		
