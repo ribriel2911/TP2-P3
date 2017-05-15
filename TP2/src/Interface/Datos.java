@@ -59,7 +59,7 @@ public class Datos {
 		
 		_textDesde		= new JTextField();
 		_textHasta		= new JTextField();
-		_textPeajes		= new JTextField();
+		_textPeajes		= new JTextField("0");
 		
 		_rbAgregar = new JRadioButton();
 		_rbAgregar.setSelected(true);

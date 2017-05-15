@@ -86,10 +86,12 @@ public class VentanaAgregar {
 				
 				MapMarkerDot ciudad = new MapMarkerDot(c);
 				ciudad.setBackColor(Color.WHITE);
-				ciudad.setName(_textName.getText());
+				ciudad.setName(_textName.getText());	
 				
-				_d._ciudades.add(ciudad);
-				_d._jmap.addMapMarker(ciudad);
+				if(_d._mapa.agregarCiudad(_textName.getText(), c)){
+					_d._ciudades.add(ciudad);
+					_d._jmap.addMapMarker(ciudad);
+				}
 			}
 		});
 	}

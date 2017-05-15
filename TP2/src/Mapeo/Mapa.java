@@ -39,11 +39,46 @@ public class Mapa {
 		_ciudades.get(j).destruirRuta(_ciudades.get(i));
 	}
 	
-	public void agregarCiudad(String nombre, Coordinate cord){
+	@SuppressWarnings("unused")
+	public boolean agregarCiudad(String nombre, Coordinate cord){
 		
-		int id = _ciudades.size();
+		boolean ret;
 		
-		_ciudades.add(new Ciudad(id,nombre, cord));
+		try{
+			Ciudad c = getCiudad(nombre);
+			
+			return false;
+		}
+		
+		catch(IllegalArgumentException e){
+			
+			ret = true;
+		}
+		
+		try{
+			Ciudad c = getCiudad(cord);
+			
+			return false;
+		}
+		
+		catch(IllegalArgumentException e){
+			
+			ret = true;
+		}
+		
+		if(ret){
+			
+			int id = _ciudades.size();
+		
+			_ciudades.add(new Ciudad(id,nombre, cord));
+			
+			System.out.println("Se agrego: "+nombre);
+		
+			return true;
+		}
+		
+		return false;
+		
 	}
 	
 	public Ciudad getCiudad(String s){
@@ -58,6 +93,19 @@ public class Mapa {
 		throw new IllegalArgumentException("No existe una ciudad con nombre: "+ s);
 	}
 	
+	public Ciudad getCiudad(Coordinate c){
+		
+		for(Ciudad ciudad : _ciudades){
+			
+			if	(ciudad._coordenadas.getLat()==c.getLat()
+			&&	ciudad._coordenadas.getLon()==c.getLon()){
+				return ciudad;
+			}
+		}
+		
+		throw new IllegalArgumentException("No existe una ciudad con las coordenadas: "+ c.toString());
+	}
+	
 	public Ciudad getCiudad(int i){
 		
 		chequearCiudad(i, "el indice");
@@ -66,6 +114,8 @@ public class Mapa {
 	}
 	
 	public String getNameCiudad(int i){
+		
+		chequearCiudad(i, "el nombre");
 		
 		return _ciudades.get(i)._nombre;
 	}
