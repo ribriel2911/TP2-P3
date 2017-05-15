@@ -46,6 +46,11 @@ public class Mapa {
 		_ciudades.add(new Ciudad(id,nombre, cord));
 	}
 	
+	public String getCiudad(int i){
+		
+		return _ciudades.get(i)._nombre;
+	}
+	
 	public int totalCiudades(){
 		
 		return _ciudades.size();

@@ -29,10 +29,10 @@ public class Datos {
 		_jmap			= new JMapViewer();
 		
 		_mapa			= new Mapa();
-		_mapa.agregarCiudad("SanFernando", new Coordinate(-34.4442,-58.5775));
-		_mapa.agregarCiudad("Tigre", new Coordinate(-34.4167, -58.5833));
-		_mapa.agregarCiudad("San Isidro", new Coordinate(-34.4708, -58.5286));
-		_mapa.agregarCiudad("San Miguel", new Coordinate(-34.5239, -58.7794));
+		_mapa.agregarCiudad("SanFernando(0)", new Coordinate(-34.4442,-58.5775));
+		_mapa.agregarCiudad("Tigre(1)", new Coordinate(-34.4167, -58.5833));
+		_mapa.agregarCiudad("San Isidro(2)", new Coordinate(-34.4708, -58.5286));
+		_mapa.agregarCiudad("San Miguel(3)", new Coordinate(-34.5239, -58.7794));
 		
 		_mapa.agregarRuta(3, 1, false);
 		_mapa.agregarRuta(3, 0, true);
@@ -58,5 +58,15 @@ public class Datos {
 		_bgSelector.add(_rbBuscar);
 		
 		_textSelector	= false;
+	}
+	
+	public JTextField seleccionado(){
+		
+		if (!_textSelector){
+			
+			return _textDesde;
+		}
+		
+		return _textHasta;
 	}
 }
