@@ -1,5 +1,6 @@
 package Interface;
 
+import java.awt.Color;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.MouseAdapter;
@@ -13,6 +14,9 @@ import javax.swing.JRadioButton;
 import javax.swing.JTextField;
 import javax.swing.plaf.basic.BasicInternalFrameUI;
 
+import org.openstreetmap.gui.jmapviewer.Coordinate;
+import org.openstreetmap.gui.jmapviewer.MapMarkerDot;
+
 public class VentanaAgregar {
 
 	protected	JInternalFrame		_frame;
@@ -24,8 +28,11 @@ public class VentanaAgregar {
 	private 	JLabel				_lblLongitud;
 	private 	JButton				_btnAgregar;
 	private		JRadioButton		_rbAgregar;
+	private		Datos				_d;
 	
 	public VentanaAgregar(Datos d){
+		
+		_d = d;
 		
 		_frame = new JInternalFrame();
 		_frame.setBounds(400, 0, 200, 200);
@@ -38,7 +45,7 @@ public class VentanaAgregar {
 		_lblNombre.setBounds(5, 14, 78, 14);
 		_frame.getContentPane().add(_lblNombre);
 		
-		_textName = d._textName;
+		_textName = _d._textName;
 		_textName.setBounds(60, 11, 110, 20);
 		_frame.getContentPane().add(_textName);
 		_textName.setColumns(10);
@@ -47,7 +54,7 @@ public class VentanaAgregar {
 		_lblLatitud.setBounds(5, 45, 78, 14);
 		_frame.getContentPane().add(_lblLatitud);
 		
-		_textLat = d._textLat;
+		_textLat = _d._textLat;
 		_textLat.setBounds(60, 42, 110, 20);
 		_frame.getContentPane().add(_textLat);
 		_textLat.setColumns(10);
@@ -56,12 +63,12 @@ public class VentanaAgregar {
 		_lblLongitud.setBounds(5, 76, 78, 14);
 		_frame.getContentPane().add(_lblLongitud);
 		
-		_textLon = d._textLon;
+		_textLon = _d._textLon;
 		_textLon.setBounds(60, 73, 110, 20);
 		_frame.getContentPane().add(_textLon);
 		_textLon.setColumns(10);
 		
-		_rbAgregar = d._rbAgregar;
+		_rbAgregar = _d._rbAgregar;
 		_rbAgregar.setBounds(5, 105, 20, 20);
 		_frame.getContentPane().add(_rbAgregar);
 		
@@ -72,6 +79,17 @@ public class VentanaAgregar {
 		_btnAgregar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				
+				double lat = Double.valueOf(_textLat.getText());
+				double lon = Double.valueOf(_textLon.getText());
+				
+				Coordinate c = new Coordinate(lat,lon);
+				
+				MapMarkerDot ciudad = new MapMarkerDot(c);
+				ciudad.setBackColor(Color.WHITE);
+				ciudad.setName(_textName.getText());
+				
+				_d._ciudades.add(ciudad);
+				_d._jmap.addMapMarker(ciudad);
 			}
 		});
 	}
