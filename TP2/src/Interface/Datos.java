@@ -34,6 +34,11 @@ public class Datos {
 		_mapa.agregarCiudad("San Isidro", new Coordinate(-34.4708, -58.5286));
 		_mapa.agregarCiudad("San Miguel", new Coordinate(-34.5239, -58.7794));
 		
+		_mapa.agregarRuta(3, 1, false);
+		_mapa.agregarRuta(3, 0, true);
+		_mapa.agregarRuta(1, 2, false);
+		_mapa.agregarRuta(0, 2, true);
+		
 		_textName		= new JTextField();
 		_textLat		= new JTextField();
 		_textLon		= new JTextField();
@@ -54,5 +59,4 @@ public class Datos {
 		
 		_textSelector	= false;
 	}
-
 }

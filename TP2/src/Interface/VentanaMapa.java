@@ -14,6 +14,7 @@ import javax.swing.plaf.basic.BasicInternalFrameUI;
 import org.openstreetmap.gui.jmapviewer.Coordinate;
 import org.openstreetmap.gui.jmapviewer.JMapViewer;
 import org.openstreetmap.gui.jmapviewer.MapMarkerDot;
+import org.openstreetmap.gui.jmapviewer.MapPolygonImpl;
 import org.openstreetmap.gui.jmapviewer.interfaces.MapPolygon;
 
 public class VentanaMapa {
@@ -23,12 +24,14 @@ public class VentanaMapa {
 	private MapMarkerDot _posicion;
 	private JTextField _textLat;
 	private JTextField _textLon;
+	private Datos _d;
 
 
 	public VentanaMapa(Datos d) {
 		
-		_textLat = d._textLat;
-		_textLon = d._textLon;
+		_d = d;
+		_textLat = _d._textLat;
+		_textLon = _d._textLon;
 	
 		_frame = new JInternalFrame();
 		_frame.setBounds(0, 0, 400, 362);
@@ -36,19 +39,15 @@ public class VentanaMapa {
 		_frame.getContentPane().setLayout(null);
 		((BasicInternalFrameUI) _frame.getUI()).setNorthPane(null);
 		
-		_map = d._jmap;
+		_map = _d._jmap;
 		_map.setBounds(0,0,400,400);
+		_map.setDisplayPositionByLatLon(-34.5043031,-58.6363941, 10);
+		
 		_posicion = new MapMarkerDot(_map.getPosition());
 		_posicion.setVisible(false);
 		_map.addMapMarker(_posicion);
 		
-		for(Coordinate c : d._mapa.getCoordenadas()){
-			
-			MapMarkerDot ciudad = new MapMarkerDot(c);
-			ciudad.setBackColor(Color.BLUE);
-		//	ciudad.setColor(Color.BLUE);
-			_map.addMapMarker(ciudad);
-		}
+		dibujarMapa();
 		
 		_frame.getContentPane().add(_map);
 		
@@ -58,7 +57,7 @@ public class VentanaMapa {
 				
 				if (e.getButton() == MouseEvent.BUTTON1){
 					
-					if(d._rbAgregar.isSelected()){
+					if(_d._rbAgregar.isSelected()){
 											
 						_textLat.setText(""+_map.getPosition(e.getPoint()).getLat());
 						_posicion.setLat(_map.getPosition(e.getPoint()).getLat());
@@ -72,6 +71,25 @@ public class VentanaMapa {
 				}
 			}
 		});
+	}
+	
+	private void dibujarMapa(){
+		
+		for(Coordinate c : _d._mapa.getCoordenadas()){
+			
+			MapMarkerDot ciudad = new MapMarkerDot(c);
+			ciudad.setBackColor(Color.BLUE);
+			_map.addMapMarker(ciudad);
+		}
+		
+		for(int i=0;i<_d._mapa.totalCiudades();i++){
+			
+			for(int j : _d._mapa.getVecinos(i)){
+				
+				MapPolygon p = new MapPolygonImpl(_d._mapa.getCoordenadas(i),_d._mapa.getCoordenadas(j),_d._mapa.getCoordenadas(i));
+				_map.addMapPolygon(p);
+			}
+		}
 	}
 
 }

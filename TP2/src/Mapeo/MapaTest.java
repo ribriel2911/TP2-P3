@@ -12,61 +12,61 @@ public class MapaTest{
 	@Test
 	public void agregarRutaTest(){
 		Mapa mapa = new Mapa(4);
-		mapa.agregarRuta(0, 2,1,false);
+		mapa.agregarRuta(0, 2,false);
 		assertTrue( mapa.existeRuta(0, 2));
 	}
 	
 	@Test
 	public void agregarIndicesInvertidosTest(){
 		Mapa mapa = new Mapa(4);
-		mapa.agregarRuta(1, 3,1,false);
+		mapa.agregarRuta(1, 3,false);
 		assertTrue( mapa.existeRuta(3, 1) );
 	}
 	
 	@Test
 	public void rutaInexistenteTest(){
 		Mapa mapa = new Mapa(4);
-		mapa.agregarRuta(1, 3,1,false);
+		mapa.agregarRuta(1, 3,false);
 		assertFalse( mapa.existeRuta(1, 2) );
 	}
 	
 	@Test(expected = IllegalArgumentException.class)
 	public void construccionErroneaTest(){
 		Mapa mapa = new Mapa(4);
-		mapa.agregarRuta(1, 4,1,false);
+		mapa.agregarRuta(1, 4,false);
 	}
 
 	@Test(expected = IllegalArgumentException.class)
 	public void idCiudadNegativaTest(){
 		Mapa mapa = new Mapa(4);
-		mapa.agregarRuta(-1, 2,1,false);
+		mapa.agregarRuta(-1, 2,false);
 	}
 	
 	@Test(expected = IllegalArgumentException.class)
 	public void sinLoopsTest(){
 		Mapa mapa = new Mapa(4);
-		mapa.agregarRuta(3, 3,1,false);
+		mapa.agregarRuta(3, 3,false);
 	}
 	
 	@Test
 	public void destruirRutaTest(){
 		Mapa mapa = new Mapa(4);
-		mapa.agregarRuta(1, 2,1,false);
+		mapa.agregarRuta(1, 2,false);
 
-		mapa.eliminarRuta(1, 2,1,false);
+		mapa.eliminarRuta(1, 2,false);
 		assertFalse( mapa.existeRuta(1, 2) );
 	}
 
 	@Test(expected = IllegalArgumentException.class)
 	public void eliminarExcedidoTest(){
 		Mapa mapa = new Mapa(4);
-		mapa.eliminarRuta(0, 4,1,false);
+		mapa.eliminarRuta(0, 4,false);
 	}
 
 	@Test(expected = IllegalArgumentException.class)
 	public void eliminarNegativoTest(){
 		Mapa mapa = new Mapa(4);
-		mapa.eliminarRuta(3, -1,1,false);
+		mapa.eliminarRuta(3, -1,false);
 	}
 
 	@Test
@@ -129,16 +129,16 @@ public class MapaTest{
 	private Mapa construirRueda(){
 		
 		Mapa rueda = new Mapa(6);
-		rueda.agregarRuta(0, 1,1,false);
-		rueda.agregarRuta(1, 2,1,false);
-		rueda.agregarRuta(2, 3,1,false);
-		rueda.agregarRuta(3, 4,1,false);
-		rueda.agregarRuta(4, 0,1,false);
-		rueda.agregarRuta(0, 5,1,false);
-		rueda.agregarRuta(1, 5,1,false);
-		rueda.agregarRuta(2, 5,1,false);
-		rueda.agregarRuta(3, 5,1,false);
-		rueda.agregarRuta(4, 5,1,false);
+		rueda.agregarRuta(0, 1,false);
+		rueda.agregarRuta(1, 2,false);
+		rueda.agregarRuta(2, 3,false);
+		rueda.agregarRuta(3, 4,false);
+		rueda.agregarRuta(4, 0,false);
+		rueda.agregarRuta(0, 5,false);
+		rueda.agregarRuta(1, 5,false);
+		rueda.agregarRuta(2, 5,false);
+		rueda.agregarRuta(3, 5,false);
+		rueda.agregarRuta(4, 5,false);
 		
 		return rueda;		
 	}

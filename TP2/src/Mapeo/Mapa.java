@@ -11,32 +11,32 @@ import CaminoMinimo.*;
 
 public class Mapa {
 	
-	private ArrayList<Ciudad> _ciudades;
+	protected ArrayList<Ciudad> _ciudades;
 	
 	public Mapa(int verticesIniciales){
 		
 		_ciudades = new ArrayList<Ciudad>();
 		
 		for(int i=0; i<verticesIniciales; ++i)
-			_ciudades.add(new Ciudad(i,"Ciudad:"+i,null));
+			_ciudades.add(new Ciudad(i,"Ciudad:"+i,new Coordinate(0,0)));
 	}
 	
 	public Mapa()	{_ciudades = new ArrayList<Ciudad>();}
 	
-	public void agregarRuta(int i, int j,int dist,boolean peaje){
+	public void agregarRuta(int i, int j,boolean peaje){
 		
 		chequearRuta(i,j,"agregar");
 		
-		_ciudades.get(i).construirRuta(_ciudades.get(j),dist,peaje);
-		_ciudades.get(j).construirRuta(_ciudades.get(i),dist,peaje);
+		_ciudades.get(i).construirRuta(_ciudades.get(j),peaje);
+		_ciudades.get(j).construirRuta(_ciudades.get(i),peaje);
 	}
 	
-	public void eliminarRuta(int i,int j,int dist,boolean peaje){
+	public void eliminarRuta(int i,int j,boolean peaje){
 		
 		chequearRuta(i,j,"eliminar");
 		
-		_ciudades.get(i).destruirRuta(_ciudades.get(j),dist,peaje);
-		_ciudades.get(j).destruirRuta(_ciudades.get(i),dist,peaje);
+		_ciudades.get(i).destruirRuta(_ciudades.get(j),peaje);
+		_ciudades.get(j).destruirRuta(_ciudades.get(i),peaje);
 	}
 	
 	public void agregarCiudad(String nombre, Coordinate cord){
@@ -128,11 +128,11 @@ public class Mapa {
 						if(vecino+ciudades<vertices){
 							
 							vecino+=ciudades;
-							nodos.get(vertice).agregarArista(nodos.get(vecino), r._distancia);
+							nodos.get(vertice).agregarArista(nodos.get(vecino),(int) r._distancia);
 						}
 					}
 					
-					else nodos.get(vertice).agregarArista(nodos.get(vecino), r._distancia);
+					else nodos.get(vertice).agregarArista(nodos.get(vecino),(int) r._distancia);
 				}
 			}
 		}

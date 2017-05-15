@@ -184,13 +184,22 @@ public class MapaGraficadoTest {
 	}
 	
 	private Mapa MapaFeliz(){
+		
+		//El metodo agregar ruta calcula la distancia entre las coordenadas automaticamente
+		//por eso para realizar este test las modifico manualmente una a una para generarme un
+		//caso de prueba
 	
 		Mapa map = new Mapa(4);
-		map.agregarRuta(0, 1, 6, false);
-		map.agregarRuta(0, 2, 4, true);
-		map.agregarRuta(0, 3, 10, true);
-		map.agregarRuta(1, 3, 6, false);
-		map.agregarRuta(2, 3, 4, true);
+		map.agregarRuta(0, 1, false);
+		map._ciudades.get(0).encontrarRuta(map._ciudades.get(1), false).set_distancia(6);
+		map.agregarRuta(0, 2, true);
+		map._ciudades.get(0).encontrarRuta(map._ciudades.get(2), true).set_distancia(4);
+		map.agregarRuta(0, 3, true);
+		map._ciudades.get(0).encontrarRuta(map._ciudades.get(3), true).set_distancia(10);
+		map.agregarRuta(1, 3, false);
+		map._ciudades.get(1).encontrarRuta(map._ciudades.get(3), false).set_distancia(6);
+		map.agregarRuta(2, 3, true);
+		map._ciudades.get(2).encontrarRuta(map._ciudades.get(3), true).set_distancia(4);
 		
 		return map;
 	}
