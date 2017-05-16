@@ -38,13 +38,27 @@ public class GrafoTest {
 		assertEquals(3, grafo.getVertices());
 	}
 	
-//	@Test
-//	public void getNodosTest()
-//	{
-//		Grafo grafo = grafoDefault();
-//		Set<Nodo> nodosGrafo = nodosDefault();
-//		assertEquals(grafo.getNodos(), nodosGrafo);
-//	}
+	@Test
+	public void getNodosTest()
+	{
+		Grafo grafo = grafoDefault();
+		Set<Nodo> nodosGrafo = new HashSet<Nodo>();
+		nodosGrafo.addAll(grafo._nodos);
+		assertTrue(grafo.getNodos().equals(nodosGrafo));
+	}
+	
+	@Test
+	public void existeAristaTest()
+	{
+		Nodo n = new Nodo(1);
+		Nodo n2 = new Nodo(2);
+		n.agregarArista(n2, 10);
+		
+		Grafo grafo = new Grafo();
+		grafo.agregarNodo(n);
+		grafo.agregarNodo(n2);
+		assertTrue(grafo.existeArista(0, 1));
+	}
 	
 	public Grafo grafoDefault()
 	{

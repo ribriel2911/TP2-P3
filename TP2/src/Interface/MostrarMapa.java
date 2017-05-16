@@ -40,10 +40,10 @@ public class MostrarMapa {
 		_frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		_frame.getContentPane().setLayout(null);
 		((BasicInternalFrameUI) _frame.getUI()).setNorthPane(null);
-		
+
 		_map = _d._jmap;
 		_map.setBounds(0,0,400,440);
-		_map.setDisplayPositionByLatLon(-34.5043031,-58.6363941, 10);
+		_map.setDisplayPositionByLatLon(45.82879925192134,2.548828125, 4);
 		
 		_position = new MapMarkerDot(_map.getPosition());
 		_position.setVisible(false);

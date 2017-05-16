@@ -7,7 +7,7 @@ import java.util.Set;
 public class Grafo
 {
 	
-	private ArrayList<Nodo> _nodos = new ArrayList<>();
+	protected ArrayList<Nodo> _nodos = new ArrayList<>();
     
     public void agregarNodo(Nodo nodo) 
     {

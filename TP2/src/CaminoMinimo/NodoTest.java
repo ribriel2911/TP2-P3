@@ -91,21 +91,24 @@ public class NodoTest {
 		assertEquals(nodo.getCaminoMasCorto(), caminoMasCorto);
 	}
 	
+	@SuppressWarnings("static-access")
 	@Test(expected = IllegalArgumentException.class)
 	public void crearNodosCantidadNegativaTest()
 	{
 		Nodo nodo = new Nodo(1);
-		nodo.crearNodos(-5);  		//verificar el warning
+		nodo.crearNodos(-5);  		
 	}
 	
-//	@Test
-//	public void crearNodosTest()       hay que verificar...
-//	{
-//		Nodo nodo = new Nodo(3);
-//		ArrayList<Nodo> nodosCreados = new ArrayList<Nodo>();
-//		nodosCreados.add(new Nodo(0));
-//		nodosCreados.add(new Nodo(1));
-//		nodosCreados.add(new Nodo(2));
-//		assertEquals(Nodo.crearNodos(3), nodosCreados);
-//	}	
+	@Test
+	public void crearNodosTest()       
+	{
+		ArrayList<Nodo> nodosAutomatico = Nodo.crearNodos(3);
+		
+		ArrayList<Nodo> nodosCreados = new ArrayList<Nodo>();
+		nodosCreados.add(nodosAutomatico.get(0));
+		nodosCreados.add(nodosAutomatico.get(1));
+		nodosCreados.add(nodosAutomatico.get(2));
+			
+		assertTrue(nodosCreados.equals(nodosAutomatico));
+	}	
 }

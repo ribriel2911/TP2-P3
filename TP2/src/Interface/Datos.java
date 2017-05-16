@@ -47,18 +47,20 @@ public class Datos {
 		
 		_mapa			= new Mapa();
 		
-		_mapa.agregarCiudad("SanFernando", new Coordinate(-34.4442,-58.5775));
-		_mapa.agregarCiudad("Tigre", new Coordinate(-34.4167, -58.5833));
-		_mapa.agregarCiudad("San Isidro", new Coordinate(-34.4708, -58.5286));
-		_mapa.agregarCiudad("UNGS", new Coordinate(-34.522186431469976, -58.70001554489136));
-		_mapa.agregarCiudad("Don Torcuato", new Coordinate(-34.5,-58.6333));
+		_mapa.agregarCiudad("Lisboa", new Coordinate(38.713375686254714, -9.173583984375));
+		_mapa.agregarCiudad("Barcelona", new Coordinate(41.3850519497068, 2.164306640625));
+		_mapa.agregarCiudad("París", new Coordinate(48.8719414772291, 2.35107421875));
+		_mapa.agregarCiudad("Londres", new Coordinate(51.50788772102843, -0.120849609375));
+		_mapa.agregarCiudad("Múnich", new Coordinate(48.13951602310296, 11.57684326171875));
+		_mapa.agregarCiudad("Berlín", new Coordinate(52.52207036136367, 13.3978271484375));
 		
-		_mapa.agregarRuta(3, 1, false);
-		_mapa.agregarRuta(3, 0, true);
-		_mapa.agregarRuta(3, 4, true);
-		_mapa.agregarRuta(1, 2, false);
-		_mapa.agregarRuta(0, 2, false);
-		_mapa.agregarRuta(4, 2, true);
+		_mapa.agregarRuta(0, 3, false);
+		_mapa.agregarRuta(0, 2, true);
+		_mapa.agregarRuta(0, 1, false);
+		_mapa.agregarRuta(1, 4, false);
+		_mapa.agregarRuta(4, 5, false);
+		_mapa.agregarRuta(2, 5, true);
+		_mapa.agregarRuta(3, 5, true);
 		
 		_textName		= new JTextField();
 		_textLat		= new JTextField();
