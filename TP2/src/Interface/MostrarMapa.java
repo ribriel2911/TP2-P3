@@ -45,13 +45,13 @@ public class MostrarMapa {
 		_textLon = _d._textLon;
 	
 		_frame = new JInternalFrame();
-		_frame.setBounds(0, 0, 400, 362);
+		_frame.setBounds(0, 0, 400, 442);
 		_frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		_frame.getContentPane().setLayout(null);
 		((BasicInternalFrameUI) _frame.getUI()).setNorthPane(null);
 		
 		_map = _d._jmap;
-		_map.setBounds(0,0,400,400);
+		_map.setBounds(0,0,400,440);
 		_map.setDisplayPositionByLatLon(-34.5043031,-58.6363941, 10);
 		
 		_position = new MapMarkerDot(_map.getPosition());

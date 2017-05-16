@@ -36,18 +36,18 @@ public class Busqueda {
 		_d = d;
 		
 		_frame = new JInternalFrame();
-		_frame.setBounds(400, 200, 200, 200);
+		_frame.setBounds(400, 300, 200, 150);
 		_frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		_frame.getContentPane().setLayout(null);
 		_frame.setBorder(null);
 		((BasicInternalFrameUI) _frame.getUI()).setNorthPane(null);
 		
 		_lblDesde = new JLabel("Desde");
-		_lblDesde.setBounds(5, 14, 78, 14);
+		_lblDesde.setBounds(5, 5, 78, 14);
 		_frame.getContentPane().add(_lblDesde);
 		
 		_textDesde = _d._textDesdeB;
-		_textDesde.setBounds(60, 11, 110, 20);
+		_textDesde.setBounds(60, 5, 110, 20);
 		_frame.getContentPane().add(_textDesde);
 		_textDesde.setColumns(10);
 		
@@ -63,11 +63,11 @@ public class Busqueda {
 		});
 		
 		_lblHasta = new JLabel("Hasta");
-		_lblHasta.setBounds(5, 45, 78, 14);
+		_lblHasta.setBounds(5, 40, 78, 14);
 		_frame.getContentPane().add(_lblHasta);
 		
 		_textHasta = _d._textHastaB;
-		_textHasta.setBounds(60, 42, 110, 20);
+		_textHasta.setBounds(60, 40, 110, 20);
 		_frame.getContentPane().add(_textHasta);
 		_textHasta.setColumns(10);
 		
@@ -83,20 +83,20 @@ public class Busqueda {
 		});
 		
 		_lblPeajes = new JLabel("Peajes");
-		_lblPeajes.setBounds(5, 76, 78, 14);
+		_lblPeajes.setBounds(5, 75, 78, 14);
 		_frame.getContentPane().add(_lblPeajes);
 		
 		_textPeajes = _d._textPeajes;
-		_textPeajes.setBounds(60, 73, 110, 20);
+		_textPeajes.setBounds(60, 75, 110, 20);
 		_frame.getContentPane().add(_textPeajes);
 		_textPeajes.setColumns(10);
 		
 		_rbBuscar = _d._rbBuscar;
-		_rbBuscar.setBounds(5, 105, 20, 20);
+		_rbBuscar.setBounds(5, 110, 20, 20);
 		_frame.getContentPane().add(_rbBuscar);
 		
 		_btnBuscar = new JButton("Buscar Camino");
-		_btnBuscar.setBounds(25, 105, 150, 23);
+		_btnBuscar.setBounds(25, 110, 150, 23);
 		_frame.getContentPane().add(_btnBuscar);
 		
 		_btnBuscar.addActionListener(new ActionListener() {

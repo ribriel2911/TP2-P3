@@ -36,45 +36,45 @@ public class AgregarCiudad {
 		_d = d;
 		
 		_frame = new JInternalFrame();
-		_frame.setBounds(400, 0, 200, 200);
+		_frame.setBounds(400, 0, 200, 150);
 		_frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		_frame.getContentPane().setLayout(null);
 		_frame.setBorder(null);
 		((BasicInternalFrameUI) _frame.getUI()).setNorthPane(null);
 		
 		_lblNombre = new JLabel("Nombre");
-		_lblNombre.setBounds(5, 14, 78, 14);
+		_lblNombre.setBounds(5, 5, 78, 14);
 		_frame.getContentPane().add(_lblNombre);
 		
 		_textName = _d._textName;
-		_textName.setBounds(60, 11, 110, 20);
+		_textName.setBounds(60, 5, 110, 20);
 		_frame.getContentPane().add(_textName);
 		_textName.setColumns(10);
 		
 		_lblLatitud = new JLabel("Latitud");
-		_lblLatitud.setBounds(5, 45, 78, 14);
+		_lblLatitud.setBounds(5, 40, 78, 14);
 		_frame.getContentPane().add(_lblLatitud);
 		
 		_textLat = _d._textLat;
-		_textLat.setBounds(60, 42, 110, 20);
+		_textLat.setBounds(60, 40, 110, 20);
 		_frame.getContentPane().add(_textLat);
 		_textLat.setColumns(10);
 		
 		_lblLongitud = new JLabel("Longitud");
-		_lblLongitud.setBounds(5, 76, 78, 14);
+		_lblLongitud.setBounds(5, 75, 78, 14);
 		_frame.getContentPane().add(_lblLongitud);
 		
 		_textLon = _d._textLon;
-		_textLon.setBounds(60, 73, 110, 20);
+		_textLon.setBounds(60, 75, 110, 20);
 		_frame.getContentPane().add(_textLon);
 		_textLon.setColumns(10);
 		
 		_rbAgregar = _d._rbAgregarC;
-		_rbAgregar.setBounds(5, 105, 20, 20);
+		_rbAgregar.setBounds(5, 110, 20, 20);
 		_frame.getContentPane().add(_rbAgregar);
 		
 		_btnAgregar = new JButton("Agregar Ciudad");
-		_btnAgregar.setBounds(25, 105, 150, 23);
+		_btnAgregar.setBounds(25, 110, 150, 23);
 		_frame.getContentPane().add(_btnAgregar);
 		
 		_btnAgregar.addActionListener(new ActionListener() {

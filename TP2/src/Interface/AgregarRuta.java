@@ -37,18 +37,18 @@ public class AgregarRuta {
 		_d = d;
 		
 		_frame = new JInternalFrame();
-		_frame.setBounds(600, 200, 200, 200);
+		_frame.setBounds(400, 150, 200, 150);
 		_frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		_frame.getContentPane().setLayout(null);
 		_frame.setBorder(null);
 		((BasicInternalFrameUI) _frame.getUI()).setNorthPane(null);
 		
 		_lblDesde = new JLabel("Desde");
-		_lblDesde.setBounds(5, 14, 78, 14);
+		_lblDesde.setBounds(5, 5, 78, 14);
 		_frame.getContentPane().add(_lblDesde);
 		
 		_textDesde = _d._textDesdeA;
-		_textDesde.setBounds(60, 11, 110, 20);
+		_textDesde.setBounds(60, 5, 110, 20);
 		_frame.getContentPane().add(_textDesde);
 		_textDesde.setColumns(10);
 		
@@ -61,11 +61,11 @@ public class AgregarRuta {
 		});
 		
 		_lblHasta = new JLabel("Hasta");
-		_lblHasta.setBounds(5, 45, 78, 14);
+		_lblHasta.setBounds(5, 40, 78, 14);
 		_frame.getContentPane().add(_lblHasta);
 		
 		_textHasta = _d._textHastaA;
-		_textHasta.setBounds(60, 42, 110, 20);
+		_textHasta.setBounds(60, 40, 110, 20);
 		_frame.getContentPane().add(_textHasta);
 		_textHasta.setColumns(10);
 		
@@ -78,19 +78,19 @@ public class AgregarRuta {
 		});
 		
 		_lblPeaje = new JLabel("Peaje");
-		_lblPeaje.setBounds(5, 76, 78, 14);
+		_lblPeaje.setBounds(5, 75, 78, 14);
 		_frame.getContentPane().add(_lblPeaje);
 		
 		chckbxPeaje = d._chckbxPeaje;
-		chckbxPeaje.setBounds(60, 73, 20, 20);
+		chckbxPeaje.setBounds(60, 75, 20, 20);
 		_frame.getContentPane().add(chckbxPeaje);
 		
 		_rbAgregar = _d._rbAgregarR;
-		_rbAgregar.setBounds(5, 105, 20, 20);
+		_rbAgregar.setBounds(5, 110, 20, 20);
 		_frame.getContentPane().add(_rbAgregar);
 		
 		_btnBuscar = new JButton("Agregar Ruta");
-		_btnBuscar.setBounds(25, 105, 150, 23);
+		_btnBuscar.setBounds(25, 110, 150, 23);
 		_frame.getContentPane().add(_btnBuscar);
 		
 		_btnBuscar.addActionListener(new ActionListener() {

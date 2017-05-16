@@ -7,6 +7,8 @@ import javax.swing.JInternalFrame;
 import javax.swing.JRadioButton;
 import javax.swing.JCheckBox;
 import javax.swing.JTextField;
+import javax.swing.JLabel;
+import java.awt.Font;
 
 public class VentanaPrincipal {
 
@@ -47,7 +49,7 @@ public class VentanaPrincipal {
 	private void initialize() {
 		frame = new JFrame();
 		frame.getContentPane().setEnabled(false);
-		frame.setBounds(100, 100, 800, 400);
+		frame.setBounds(100, 100, 600, 480);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frame.getContentPane().setLayout(null);
 		
@@ -72,13 +74,5 @@ public class VentanaPrincipal {
 		JInternalFrame internalFrameAgregarR = frameAgregarR._frame;
 		frame.getContentPane().add(internalFrameAgregarR);
 		internalFrameAgregarR.setVisible(true);
-		
-		
-		textField = new JTextField();
-		textField.setEditable(false);
-		textField.setEnabled(false);
-		textField.setBounds(176, 126, 86, 20);
-		frame.getContentPane().add(textField);
-		textField.setColumns(10);
 	}
 }
