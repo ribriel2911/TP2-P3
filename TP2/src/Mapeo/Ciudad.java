@@ -1,7 +1,6 @@
 package Mapeo;
 
 import java.util.HashMap;
-import java.util.HashSet;
 import java.util.Set;
 
 import org.openstreetmap.gui.jmapviewer.Coordinate;

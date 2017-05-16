@@ -4,11 +4,6 @@ import java.awt.EventQueue;
 
 import javax.swing.JFrame;
 import javax.swing.JInternalFrame;
-import javax.swing.JRadioButton;
-import javax.swing.JCheckBox;
-import javax.swing.JTextField;
-import javax.swing.JLabel;
-import java.awt.Font;
 
 public class VentanaPrincipal {
 
@@ -18,8 +13,7 @@ public class VentanaPrincipal {
 	private Busqueda frameBusqueda;
 	private AgregarRuta frameAgregarR;
 	private Datos datos;
-	private JTextField textField;
-
+	
 	/**
 	 * Launch the application.
 	 */

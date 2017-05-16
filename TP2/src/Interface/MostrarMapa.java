@@ -1,28 +1,19 @@
 package Interface;
 
 import java.awt.Color;
-import java.awt.EventQueue;
 import java.awt.Point;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.util.ArrayList;
 import java.util.HashMap;
-
 import javax.swing.JFrame;
 import javax.swing.JInternalFrame;
 import javax.swing.JTextField;
-import javax.swing.border.Border;
 import javax.swing.plaf.basic.BasicInternalFrameUI;
-
 import org.openstreetmap.gui.jmapviewer.Coordinate;
 import org.openstreetmap.gui.jmapviewer.JMapViewer;
-import org.openstreetmap.gui.jmapviewer.MapMarkerCircle;
 import org.openstreetmap.gui.jmapviewer.MapMarkerDot;
 import org.openstreetmap.gui.jmapviewer.MapPolygonImpl;
-import org.openstreetmap.gui.jmapviewer.interfaces.MapMarker;
-import org.openstreetmap.gui.jmapviewer.interfaces.MapPolygon;
-
-import Mapeo.Ciudad;
 
 public class MostrarMapa {
 
