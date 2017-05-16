@@ -1,10 +1,13 @@
 package Interface;
 
 import java.awt.Color;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.util.ArrayList;
 import java.util.HashMap;
 
 import javax.swing.ButtonGroup;
+import javax.swing.JCheckBox;
 import javax.swing.JRadioButton;
 import javax.swing.JTextField;
 
@@ -24,10 +27,14 @@ public class Datos {
 	protected 	JTextField											_textName;
 	protected 	JTextField											_textLat;
 	protected 	JTextField											_textLon;
-	protected 	JTextField											_textDesde;
-	protected 	JTextField											_textHasta;
+	protected 	JTextField											_textDesdeB;
+	protected 	JTextField											_textHastaB;
+	protected 	JTextField											_textDesdeA;
+	protected 	JTextField											_textHastaA;
 	protected 	JTextField											_textPeajes;
-	protected 	JRadioButton										_rbAgregar;
+	protected	JCheckBox											_chckbxPeaje;
+	protected 	JRadioButton										_rbAgregarC;
+	protected 	JRadioButton										_rbAgregarR;
 	protected 	JRadioButton										_rbBuscar;
 	protected	ButtonGroup 										_bgSelector;
 	protected 	boolean	 											_textSelector;
@@ -57,19 +64,73 @@ public class Datos {
 		_textLat		= new JTextField();
 		_textLon		= new JTextField();
 		
-		_textDesde		= new JTextField();
-		_textHasta		= new JTextField();
-		_textPeajes		= new JTextField("0");
+		_textDesdeB		= new JTextField();							desactivar(_textDesdeB);
+		_textHastaB		= new JTextField();							desactivar(_textHastaB);
+		_textPeajes		= new JTextField("0");						desactivar(_textPeajes);
 		
-		_rbAgregar = new JRadioButton();
-		_rbAgregar.setSelected(true);
+		_textDesdeA		= new JTextField();							desactivar(_textDesdeA);
+		_textHastaA		= new JTextField();							desactivar(_textHastaA);
+		_chckbxPeaje	= new JCheckBox();							_chckbxPeaje.setEnabled(false);
+		
+		_rbAgregarC = new JRadioButton();
+		_rbAgregarC.setSelected(true);
+		_rbAgregarC.addActionListener(new ActionListener() {
+			
+			public void actionPerformed(ActionEvent arg0) {
+				
+				if(_rbAgregarC.isSelected()){
+					
+					activar(_textName);								desactivar(_textDesdeB);
+					activar(_textLat);								desactivar(_textHastaB);
+					activar(_textLon);								desactivar(_textPeajes);
+																	desactivar(_textDesdeA);
+																	desactivar(_textHastaA);
+																	_chckbxPeaje.setEnabled(false);
+				}
+			}
+		});
 		
 		_rbBuscar = new JRadioButton();
 		_rbBuscar.setSelected(false);
+		_rbBuscar.addActionListener(new ActionListener() {
+			
+			public void actionPerformed(ActionEvent arg0) {
+				
+				if(_rbBuscar.isSelected()){
+					
+					activar(_textDesdeB);							desactivar(_textName);
+					activar(_textHastaB);							desactivar(_textLat);
+					activar(_textPeajes);							desactivar(_textLon);
+																	desactivar(_textDesdeA);
+					_textSelector	= false;						desactivar(_textHastaA);
+																	_chckbxPeaje.setEnabled(false);
+				}
+			}
+		});
+		
+		_rbAgregarR = new JRadioButton();
+		_rbAgregarR.setSelected(false);
+		_rbAgregarR.addActionListener(new ActionListener() {
+			
+			public void actionPerformed(ActionEvent arg0) {
+				
+				if(_rbAgregarR.isSelected()){
+					
+					activar(_textDesdeA);							desactivar(_textName);
+					activar(_textHastaA);							desactivar(_textLat);
+					_chckbxPeaje.setEnabled(true);					desactivar(_textLon);
+																	desactivar(_textDesdeB);
+					_textSelector	= false;						desactivar(_textHastaB);
+																	desactivar(_textPeajes);	
+																	
+				}
+			}
+		});
 		
 		_bgSelector = new ButtonGroup();
-		_bgSelector.add(_rbAgregar);
+		_bgSelector.add(_rbAgregarC);
 		_bgSelector.add(_rbBuscar);
+		_bgSelector.add(_rbAgregarR);
 		
 		_textSelector	= false;
 	}
@@ -86,5 +147,17 @@ public class Datos {
 				else						_rutas.get(i).get(j).setColor(Color.blue);
 			}
 		}
+	}
+	
+	private void desactivar(JTextField text){
+		
+		text.setEnabled(false);
+		text.setEditable(false);
+	}
+	
+	private void activar(JTextField text){
+		
+		text.setEnabled(true);
+		text.setEditable(true);
 	}
 }

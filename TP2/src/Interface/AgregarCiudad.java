@@ -5,6 +5,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
+import java.util.HashMap;
 
 import javax.swing.JButton;
 import javax.swing.JFrame;
@@ -68,7 +69,7 @@ public class AgregarCiudad {
 		_frame.getContentPane().add(_textLon);
 		_textLon.setColumns(10);
 		
-		_rbAgregar = _d._rbAgregar;
+		_rbAgregar = _d._rbAgregarC;
 		_rbAgregar.setBounds(5, 105, 20, 20);
 		_frame.getContentPane().add(_rbAgregar);
 		
@@ -79,18 +80,25 @@ public class AgregarCiudad {
 		_btnAgregar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				
-				double lat = Double.valueOf(_textLat.getText());
-				double lon = Double.valueOf(_textLon.getText());
+				if(d._rbAgregarC.isSelected()){
 				
-				Coordinate c = new Coordinate(lat,lon);
-				
-				MapMarkerDot ciudad = new MapMarkerDot(c);
-				ciudad.setBackColor(Color.WHITE);
-				ciudad.setName(_textName.getText());	
-				
-				if(_d._mapa.agregarCiudad(_textName.getText(), c)){
-					_d._ciudades.add(ciudad);
-					_d._jmap.addMapMarker(ciudad);
+					double lat = Double.valueOf(_textLat.getText());
+					double lon = Double.valueOf(_textLon.getText());
+					
+					Coordinate c = new Coordinate(lat,lon);
+					
+					MapMarkerDot ciudad = new MapMarkerDot(c);
+					ciudad.setBackColor(Color.WHITE);
+					ciudad.setName(_textName.getText());	
+					
+					if(_d._mapa.agregarCiudad(_textName.getText(), c)){
+						_d._ciudades.add(ciudad);
+						
+						int key = _d._mapa.getIdCiudad(_textName.getText());
+						
+						_d._rutas.put(key, new HashMap<>());
+						_d._jmap.addMapMarker(ciudad);
+					}
 				}
 			}
 		});

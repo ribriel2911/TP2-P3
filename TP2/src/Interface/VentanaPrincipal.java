@@ -5,15 +5,18 @@ import java.awt.EventQueue;
 import javax.swing.JFrame;
 import javax.swing.JInternalFrame;
 import javax.swing.JRadioButton;
+import javax.swing.JCheckBox;
+import javax.swing.JTextField;
 
 public class VentanaPrincipal {
 
 	private JFrame frame;
 	private MostrarMapa frameMap;
-	private AgregarCiudad frameAgregar;
+	private AgregarCiudad frameAgregarC;
 	private Busqueda frameBusqueda;
 	private AgregarRuta frameAgregarR;
 	private Datos datos;
+	private JTextField textField;
 
 	/**
 	 * Launch the application.
@@ -43,6 +46,7 @@ public class VentanaPrincipal {
 	 */
 	private void initialize() {
 		frame = new JFrame();
+		frame.getContentPane().setEnabled(false);
 		frame.setBounds(100, 100, 800, 400);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frame.getContentPane().setLayout(null);
@@ -50,18 +54,31 @@ public class VentanaPrincipal {
 		datos = new Datos();
 		
 		frameMap = new MostrarMapa(datos);
-		JInternalFrame internalFrameLeft = frameMap._frame;
-		frame.getContentPane().add(internalFrameLeft);	
-		internalFrameLeft.setVisible(true);
+		JInternalFrame internalFrameMapa = frameMap._frame;
+		frame.getContentPane().add(internalFrameMapa);	
+		internalFrameMapa.setVisible(true);
 		
-		frameAgregar = new AgregarCiudad(datos);
-		JInternalFrame internalFrameUpRight = frameAgregar._frame;
-		frame.getContentPane().add(internalFrameUpRight);
-		internalFrameUpRight.setVisible(true);
+		frameAgregarC = new AgregarCiudad(datos);
+		JInternalFrame internalFrameAgregarC = frameAgregarC._frame;
+		frame.getContentPane().add(internalFrameAgregarC);
+		internalFrameAgregarC.setVisible(true);
 		
 		frameBusqueda = new Busqueda(datos);
-		JInternalFrame internalFrameDownRight = frameBusqueda._frame;
-		frame.getContentPane().add(internalFrameDownRight);
-		internalFrameDownRight.setVisible(true);
+		JInternalFrame internalFrameBusqueda = frameBusqueda._frame;
+		frame.getContentPane().add(internalFrameBusqueda);
+		internalFrameBusqueda.setVisible(true);
+		
+		frameAgregarR = new AgregarRuta(datos);
+		JInternalFrame internalFrameAgregarR = frameAgregarR._frame;
+		frame.getContentPane().add(internalFrameAgregarR);
+		internalFrameAgregarR.setVisible(true);
+		
+		
+		textField = new JTextField();
+		textField.setEditable(false);
+		textField.setEnabled(false);
+		textField.setBounds(176, 126, 86, 20);
+		frame.getContentPane().add(textField);
+		textField.setColumns(10);
 	}
 }

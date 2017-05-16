@@ -30,22 +30,24 @@ public class MapaTest{
 		assertFalse( mapa.existeRuta(1, 2) );
 	}
 	
-	@Test(expected = IllegalArgumentException.class)
+	@Test
 	public void construccionErroneaTest(){
+		
 		Mapa mapa = new Mapa(4);
-		mapa.agregarRuta(1, 4,false);
+		
+		assertFalse(mapa.agregarRuta(1, 4,false));
 	}
 
-	@Test(expected = IllegalArgumentException.class)
+	@Test
 	public void idCiudadNegativaTest(){
 		Mapa mapa = new Mapa(4);
-		mapa.agregarRuta(-1, 2,false);
+		assertFalse(mapa.agregarRuta(-1, 2,false));
 	}
 	
-	@Test(expected = IllegalArgumentException.class)
+	@Test
 	public void sinLoopsTest(){
 		Mapa mapa = new Mapa(4);
-		mapa.agregarRuta(3, 3,false);
+		assertFalse(mapa.agregarRuta(3, 3,false));
 	}
 	
 	@Test
@@ -73,16 +75,18 @@ public class MapaTest{
 		assertFalse( mapa.existeRuta(1, 2) );
 	}
 
-	@Test(expected = IllegalArgumentException.class)
+	@Test
 	public void eliminarExcedidoTest(){
 		Mapa mapa = new Mapa(4);
-		mapa.eliminarRuta(0, 4,false);
+		
+		assertFalse(mapa.eliminarRuta(0, 4,false));
 	}
 
-	@Test(expected = IllegalArgumentException.class)
+	@Test
 	public void eliminarNegativoTest(){
 		Mapa mapa = new Mapa(4);
-		mapa.eliminarRuta(3, -1,false);
+		
+		assertFalse(mapa.eliminarRuta(3, -1,false));
 	}
 
 	@Test

@@ -71,7 +71,7 @@ public class MostrarMapa {
 				
 				if (e.getButton() == MouseEvent.BUTTON1){
 					
-					if(_d._rbAgregar.isSelected()){
+					if(_d._rbAgregarC.isSelected()){
 						
 						_d.repintarRutas();
 											
@@ -87,13 +87,26 @@ public class MostrarMapa {
 					else{
 						_position.setVisible(false);
 						
+						JTextField desde;
+						JTextField hasta;
+						
+						
+						if(_d._rbBuscar.isSelected()){
+							desde = d._textDesdeB;
+							hasta = d._textHastaB;
+						}
+						else{
+							desde = d._textDesdeA;
+							hasta = d._textHastaA;
+						}
+						
 						if(!d._textSelector){
 						
 							if(_selectedDesde!=null)	_selectedDesde.setBackColor(Color.WHITE);
 							_selectedDesde = buscarSercano(e.getPoint());
 							_selectedDesde.setBackColor(Color.ORANGE);;
 							
-							d._textDesde.setText(_selectedDesde.getName());
+							desde.setText(_selectedDesde.getName());
 						}
 						
 						else{
@@ -101,7 +114,7 @@ public class MostrarMapa {
 							_selectedHasta = buscarSercano(e.getPoint());
 							_selectedHasta.setBackColor(Color.ORANGE);;
 							
-							d._textHasta.setText(_selectedHasta.getName());
+							hasta.setText(_selectedHasta.getName());
 						}
 					}
 					

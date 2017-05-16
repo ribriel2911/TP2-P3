@@ -23,20 +23,37 @@ public class Mapa {
 	
 	public Mapa()	{_ciudades = new ArrayList<Ciudad>();}
 	
-	public void agregarRuta(int i, int j,boolean peaje){
+	public boolean agregarRuta(int i, int j,boolean peaje){
 		
-		chequearRuta(i,j,"agregar");
+		try{
+			chequearRuta(i,j,"agregar");
 		
-		_ciudades.get(i).construirRuta(_ciudades.get(j),peaje);
-		_ciudades.get(j).construirRuta(_ciudades.get(i),peaje);
+			_ciudades.get(i).construirRuta(_ciudades.get(j),peaje);
+			_ciudades.get(j).construirRuta(_ciudades.get(i),peaje);
+			
+			return true;
+		}
+		
+		catch(IllegalArgumentException e){
+			return false;
+		}
 	}
 	
-	public void eliminarRuta(int i,int j,boolean peaje){
+	public boolean eliminarRuta(int i,int j,boolean peaje){
 		
-		chequearRuta(i,j,"eliminar");
+		try{
+			chequearRuta(i,j,"eliminar");
+			
+			_ciudades.get(i).destruirRuta(_ciudades.get(j));
+			_ciudades.get(j).destruirRuta(_ciudades.get(i));
+			
+			return true;
+		}
 		
-		_ciudades.get(i).destruirRuta(_ciudades.get(j));
-		_ciudades.get(j).destruirRuta(_ciudades.get(i));
+		catch(IllegalArgumentException e){
+			
+			return false;
+		}
 	}
 	
 	@SuppressWarnings("unused")
@@ -46,33 +63,23 @@ public class Mapa {
 		
 		try{
 			Ciudad c = getCiudad(nombre);
-			
 			return false;
 		}
 		
-		catch(IllegalArgumentException e){
-			
-			ret = true;
-		}
+		catch(IllegalArgumentException e)	{ret = true;}
 		
 		try{
 			Ciudad c = getCiudad(cord);
-			
 			return false;
 		}
 		
-		catch(IllegalArgumentException e){
-			
-			ret = true;
-		}
+		catch(IllegalArgumentException e)	{ret = true;}
 		
 		if(ret){
 			
 			int id = _ciudades.size();
-		
-			_ciudades.add(new Ciudad(id,nombre, cord));
 			
-			System.out.println("Se agrego: "+nombre);
+			_ciudades.add(new Ciudad(id,nombre, cord));
 		
 			return true;
 		}

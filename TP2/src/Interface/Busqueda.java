@@ -28,7 +28,7 @@ public class Busqueda {
 	private 	JTextField			_textPeajes;
 	private 	JLabel				_lblPeajes;
 	private 	JButton				_btnBuscar;
-	private		JRadioButton		_rbAgregar;
+	private		JRadioButton		_rbBuscar;
 	private		Datos				_d;
 
 	public Busqueda(Datos d){
@@ -46,7 +46,7 @@ public class Busqueda {
 		_lblDesde.setBounds(5, 14, 78, 14);
 		_frame.getContentPane().add(_lblDesde);
 		
-		_textDesde = _d._textDesde;
+		_textDesde = _d._textDesdeB;
 		_textDesde.setBounds(60, 11, 110, 20);
 		_frame.getContentPane().add(_textDesde);
 		_textDesde.setColumns(10);
@@ -66,7 +66,7 @@ public class Busqueda {
 		_lblHasta.setBounds(5, 45, 78, 14);
 		_frame.getContentPane().add(_lblHasta);
 		
-		_textHasta = _d._textHasta;
+		_textHasta = _d._textHastaB;
 		_textHasta.setBounds(60, 42, 110, 20);
 		_frame.getContentPane().add(_textHasta);
 		_textHasta.setColumns(10);
@@ -91,9 +91,9 @@ public class Busqueda {
 		_frame.getContentPane().add(_textPeajes);
 		_textPeajes.setColumns(10);
 		
-		_rbAgregar = _d._rbBuscar;
-		_rbAgregar.setBounds(5, 105, 20, 20);
-		_frame.getContentPane().add(_rbAgregar);
+		_rbBuscar = _d._rbBuscar;
+		_rbBuscar.setBounds(5, 105, 20, 20);
+		_frame.getContentPane().add(_rbBuscar);
 		
 		_btnBuscar = new JButton("Buscar Camino");
 		_btnBuscar.setBounds(25, 105, 150, 23);
@@ -102,32 +102,35 @@ public class Busqueda {
 		_btnBuscar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				
-				_d.repintarRutas();
 				
-				int desde = _d._mapa.getIdCiudad(_textDesde.getText());
-				int hasta = _d._mapa.getIdCiudad(_textHasta.getText());
-				int peajes = Integer.valueOf(_textPeajes.getText());
-				
-				Grafo g = _d._mapa.caminoCorto(desde, peajes);
-				
-				int anterior = -1;
-				
-				for(int i : g.getNodo(hasta).getCaminoMasCorto()){
+				if(_rbBuscar.isSelected()){
+					_d.repintarRutas();
 					
-					_d._ciudades.get(i).setBackColor(Color.GREEN);
+					int desde = _d._mapa.getIdCiudad(_textDesde.getText());
+					int hasta = _d._mapa.getIdCiudad(_textHasta.getText());
+					int peajes = Integer.valueOf(_textPeajes.getText());
+					
+					Grafo g = _d._mapa.caminoCorto(desde, peajes);
+					
+					int anterior = -1;
+					
+					for(int i : g.getNodo(hasta).getCaminoMasCorto()){
 						
-					if(anterior>=0){
+						_d._ciudades.get(i).setBackColor(Color.GREEN);
+							
+						if(anterior>=0){
+							
+							_d._rutas.get(anterior).get(i).setColor(Color.green);
+							_d._rutas.get(i).get(anterior).setColor(Color.green);
+							
+							anterior = i;
+						}
 						
-						_d._rutas.get(anterior).get(i).setColor(Color.green);
-						_d._rutas.get(i).get(anterior).setColor(Color.green);
-						
-						anterior = i;
+						else anterior = i;
 					}
 					
-					else anterior = i;
+					_d._jmap.updateUI();
 				}
-				
-				_d._jmap.updateUI();
 			}
 		});
 	}
